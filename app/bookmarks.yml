@@ -1,0 +1,30 @@
+categories:
+  - id: 1
+    title: 社交媒体
+  - id: 2
+    title: 参考资料
+  - id: 3
+    title: 在线工具
+  - id: "string-name"
+    title: 新分类
+  - id: "category-name"
+    title: 新分类
+
+links:
+  - name: 微博
+    link: "https://weibo.com"
+    icon: "sinaWeibo"
+    category: 1
+
+  - name: "知乎"
+    link: "https://zhihu.com"
+    icon: "commentQuestion"
+    category: 2
+
+  - name: "链接3"
+    link: "#"
+    category: b
+  - name: "链接4"
+    link: "#"
+  - name: "链接5"
+    link: "#"

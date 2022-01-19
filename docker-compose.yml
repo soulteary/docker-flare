@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  flame:
+    image: soulteary/flare:0.1.0
+    restart: always
+    command: flare
+    ports:
+      - 5005:5005
+    volumes:
+      - ./app:/app
