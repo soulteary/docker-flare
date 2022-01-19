@@ -28,6 +28,13 @@ docker-compose up -d
 - 简化了天气数据的获取方式，不再需要申请天气网站的 `API_KEY` ，避免了不必要的成本开销。
 - 简化了 Flame 中的登陆、K8S、Docker 集成等不必要的功能。
 
+## 支持图标
+
+支持所有的 Material Design Icons，你可以在 [materialdesignicons.com](https://materialdesignicons.com/) 或 [pictogrammers.github.io/@mdi](https://pictogrammers.github.io/@mdi/font/6.5.95/) 6700 个精心设计的图标中找到你喜欢的图标。
+
+在配置中使用的图标名称无需使用连字符 `-`，直接输入名称即可。（大小写不敏感）
+
+
 ## TODO
 
 - [ ] 将程序完全配置化
