@@ -8,13 +8,36 @@
 - MEM: < 30M
 - Docker Image: ~10M
 
-## 如何使用
+## 快速上手
 
-根据你的需求调整 `app/*yml` 文件，然后执行：
+快速上手 Flare，需要两步：**下载**包含示例的代码、**启动**程序访问浏览器。
+
+### 下载包含示例的代码
+
+你可以使用 `git clone` 或者选择使用 “Download ZIP” 的方式，下载包含了配置示例（书签和应用）的代码：
+
+```bash
+git clone https://github.com/soulteary/docker-flare.git
+cd docker-flare
+```
+
+`app/*yml` 目录中包含了你的书签和应用数据，你可以根据你的需求对其进行调整。
+
+### 启动程序访问浏览器
+
+启动应用非常简单，如果你习惯使用 Docker，可以执行：
+
+```bash
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.1.1
+```
+
+如果你习惯使用 docker-compose：
 
 ```bash
 docker-compose up -d
 ```
+
+在命令执行完毕之后，默认访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
 ![](./screenshots/ui.png)
 
