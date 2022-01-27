@@ -57,6 +57,12 @@ docker-compose up -d
 
 在配置中使用的图标名称无需使用连字符 `-`，直接输入名称即可。（大小写不敏感）
 
+为了降低寻找和输入图标的成本，我将 `@mdi/font` 项目集成到了应用中，启动应用之后，访问 `/resources/mdi-cheat-sheets/` 可以打开图标列表页面。
+
+在页面中点击具体图标，可以使用的图标名称就自动复制到剪贴板中啦。
+
+![](./screenshots/icon-cheat-sheets.png)
+
 
 ## TODO
 
