@@ -1,12 +1,17 @@
 # Flare ✨
 
-兼顾轻量快速、美观的个人导航页面，适用于 HomeLab 或其他场景。
+兼顾轻量快速、界面美观的个人导航页面，适用于 HomeLab 或其他注重私密的场景。
+
+无数据库依赖，使用简单的配置来保存数据，数据更加透明，并 100% 属于用户自己。
 
 应用资源消耗非常低：
 
 - CPU: < 1%
 - MEM: < 30M
-- Docker Image: ~10M
+- Docker Image: < 10M
+
+![](./screenshots/docker-image-size.png)
+
 
 ## 快速上手
 
@@ -14,21 +19,21 @@
 
 ### 下载包含示例的代码
 
-你可以使用 `git clone` 或者选择使用 “Download ZIP” 的方式，下载包含了配置示例（书签和应用）的代码：
+你可以使用 `git clone` 或者选择使用 “Download ZIP” 的方式，下载包含了基础的配置示例（书签和应用）的代码：
 
 ```bash
 git clone https://github.com/soulteary/docker-flare.git
 cd docker-flare
 ```
 
-`app/*yml` 目录中包含了你的书签和应用数据，你可以根据你的需求对其进行调整。
+`app/*yml` 目录中包含了你的书签和应用数据，你可以根据你的需求对其进行调整。如果目录中没有配置文件，应用将在首次运行的时候，进行自动创建。
 
 ### 启动程序访问浏览器
 
 启动应用非常简单，如果你习惯使用 Docker，可以执行：
 
 ```bash
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.1.2
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.0
 ```
 
 如果你习惯使用 docker-compose：
@@ -66,9 +71,9 @@ docker-compose up -d
 
 ## TODO
 
-- [ ] 将程序完全配置化
 - [ ] 完善程序设置功能
 - [ ] 支持使用 API 进行内容管理
+- [ ] 支持自定义主题配色
 
 ## Thanks
 
