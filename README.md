@@ -4,6 +4,8 @@
 
 无数据库依赖，使用简单的配置来保存数据，数据更加透明，并 100% 属于用户自己。
 
+支持 x86 以及常见的 ARM 设备。
+
 应用资源消耗非常低：
 
 - CPU: < 1%
@@ -33,7 +35,7 @@ cd docker-flare
 启动应用非常简单，如果你习惯使用 Docker，可以执行：
 
 ```bash
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.0
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.1
 ```
 
 如果你习惯使用 docker-compose：
