@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   flame:
-    image: soulteary/flare:0.2.3
+    image: soulteary/flare:0.2.4
     restart: always
     command: flare
     ports:
