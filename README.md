@@ -1,8 +1,8 @@
 # Flare ✨
 
-兼顾轻量快速、界面美观的个人导航页面，适用于 HomeLab 或其他注重私密的场景。
+轻量、快速、美观的个人导航页面，适用于 HomeLab 或其他注重私密的场景。
 
-无数据库依赖，使用简单的配置来保存数据，数据更加透明，并 100% 属于用户自己。
+无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
 支持 x86 以及常见的 ARM 设备。
 
@@ -35,7 +35,7 @@ cd docker-flare
 启动应用非常简单，如果你习惯使用 Docker，可以执行：
 
 ```bash
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.4
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.5
 ```
 
 如果你习惯使用 docker-compose：
@@ -50,31 +50,33 @@ docker-compose up -d
 
 ![](./screenshots/lighthouse.png)
 
+## 进阶文档
+
+- [自定义启动参数](./docs/advanced-startup.md)
+- [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
+- [如何挑选和使用图标](./docs/material-design-icons.md)
+
 ## 相比较 Flame
 
-- 服务资源消耗极低，可以跑在任何规格的机器上。
-- 程序页面性能非常好，渲染速度更快，支持渲染大量书签，而不必担心风扇起飞。
+- 服务资源消耗极低，可以跑在任何规格的机器上，甚至是一台搭载2015年S805芯片的ARM盒子。
+- 程序页面性能非常好，渲染速度更快，支持同时渲染大量（数千）书签，而不必担心风扇起飞。
 - 使用声明的配置来进行导航内容的管理，无需担心数据迁移问题。
 - 简化了天气数据的获取方式，不再需要申请天气网站的 `API_KEY` ，避免了不必要的成本开销。
-- 简化了 Flame 中的登陆、K8S、Docker 集成等不必要的功能。
+- 简化了 Flame 中的K8S、Docker 集成等不必要的功能。
+- 内置了大量风格统一、高质量的矢量图标，减少选择困难症，确保界面长期“耐看”。
+- 默认使用免登陆模式，避免 HomeLab、本地使用的用户有额外的登陆操作。
 
-## 支持图标
+## 关于内置图标
 
-支持所有的 Material Design Icons，你可以在 [materialdesignicons.com](https://materialdesignicons.com/) 或 [pictogrammers.github.io/@mdi](https://pictogrammers.github.io/@mdi/font/6.5.95/) 6700 个精心设计的图标中找到你喜欢的图标。
-
-在配置中使用的图标名称无需使用连字符 `-`，直接输入名称即可。（大小写不敏感）
-
-为了降低寻找和输入图标的成本，我将 `@mdi/font` 项目集成到了应用中，启动应用之后，访问 `/resources/mdi-cheat-sheets/` 可以打开图标列表页面。
-
-在页面中点击具体图标，可以使用的图标名称就自动复制到剪贴板中啦。
+程序内置了目前 [materialdesignicons.com](https://materialdesignicons.com/) 中所有的 Material Design Icons，你可以让你的每一个书签都拥有风格统一、高质量的矢量图标。
 
 ![](./screenshots/icon-cheat-sheets.png)
 
+更多信息，可以参考 [如何挑选和使用图标](./docs/material-design-icons.md)。
 
 ## TODO
 
-- [ ] 公网部署版本支持禁用设置
-- [ ] 完善程序设置功能
+- [ ] 持续完善程序定制化功能
 - [ ] 支持使用 API 进行内容管理
 - [ ] 支持自定义主题配色
 
