@@ -1,0 +1,35 @@
+# Traefik 快速上手和使用，可参考 https://github.com/soulteary/traefik-example/
+version: '3.6'
+
+services:
+  flare:
+    image: soulteary/flare:0.2.5
+    restart: always
+    # 默认无需添加任何参数，如有特殊需求
+    # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
+    command: flare
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+
+      - "traefik.http.routers.traefik-flare-http.middlewares=https-redirect@file"
+      - "traefik.http.routers.traefik-flare-http.entrypoints=http"
+      - "traefik.http.routers.traefik-flare-http.rule=Host(`flare.example.com`)"
+      - "traefik.http.routers.traefik-flare-http.service=dashboard@internal"
+
+      - "traefik.http.routers.traefik-flare-https.entrypoints=https"
+      - "traefik.http.routers.traefik-flare-https.rule=Host(`flare.example.com`) && PathPrefix(`/`)"
+      - "traefik.http.routers.traefik-flare-https.tls=true"
+
+      - "traefik.http.services.traefik-flare-backend.loadbalancer.server.scheme=http"
+      - "traefik.http.services.traefik-flare-backend.loadbalancer.server.port=5005"
+    networks:
+      - traefik
+    expose:
+      - 5005
+    volumes:
+      - ./app:/app
+
+networks:
+  traefik:
+    external: true

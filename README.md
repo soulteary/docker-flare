@@ -12,8 +12,7 @@
 - MEM: < 30M
 - Docker Image: < 10M
 
-![](./screenshots/docker-image-size.png)
-
+![Flare Docker Image Size](./screenshots/docker-image-size.png)
 
 ## 快速上手
 
@@ -46,15 +45,16 @@ docker-compose up -d
 
 在命令执行完毕之后，默认访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
-![](./screenshots/ui.png)
+![Flare Web UI](./screenshots/ui.png)
 
-![](./screenshots/lighthouse.png)
+![Flare Lighthouse Scores](./screenshots/lighthouse.png)
 
 ## 进阶文档
 
 - [自定义启动参数](./docs/advanced-startup.md)
 - [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
 - [如何挑选和使用图标](./docs/material-design-icons.md)
+- [如何和 Traefik 一起使用](https://github.com/soulteary/traefik-example)
 
 ## 相比较 Flame
 
