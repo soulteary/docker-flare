@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   flare:
-    image: soulteary/flare:0.2.5
+    image: soulteary/flare:0.2.6
     restart: always
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
@@ -15,6 +15,8 @@ services:
       # - FLARE_USER=flare
       # 指定你自己的账号密码，如未设置 `FLARE_USER`，则会默认生成密码并展示在应用启动日志中
       # - FLARE_PASS=your_password
+      # 是否开启“使用向导”，访问 `/guide`
+      # - FLARE_GUIDE=1
     ports:
       - 5005:5005
     volumes:

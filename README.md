@@ -36,20 +36,34 @@ cd docker-flare
 启动应用非常简单，如果你习惯使用 Docker，可以执行：
 
 ```bash
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.5
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.6
 ```
 
-如果你习惯使用 docker-compose：
+如果你习惯使用 docker-compose，只需要执行：
 
 ```bash
 docker-compose up -d
 ```
 
-在命令执行完毕之后，默认访问浏览器的 `5005` 端口，就能看到下面的界面啦：
+如果你是 Traefik 用户，可以参考 `docker-compose.traefik.yml` 配置文件来使用。
+
+不论是哪一种方式，在命令执行完毕之后，默认情况下，我们访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
 ![Flare Web UI](./screenshots/ui.png)
 
+### 应用使用向导
+
+为了方便你的使用，我制作了一个简单的向导程序，在 flare 启动之后，你可以随时访问 `/guide`，获取 flare 基础界面功能的介绍。
+
+![Flare Guide](./screenshots/flare-guide.png)
+
+## 应用性能
+
+“快”作为 Flare 对主要优势而言，自然是需要“满分”来加持。
+
 ![Flare Lighthouse Scores](./screenshots/lighthouse.png)
+
+如果你好奇这是如何实现的，可以阅读这篇文章：[《Flare 制作记录：应用前后端性能优化》](https://soulteary.com/2022/01/19/flare-production-record-application-frontend-and-backend-performance-optimization.html)。
 
 ## 进阶文档
 

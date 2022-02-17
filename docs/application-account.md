@@ -13,7 +13,7 @@ version: '3.6'
 
 services:
   flare:
-    image: soulteary/flare:0.2.5
+    image: soulteary/flare:0.2.6
     restart: always
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
@@ -34,14 +34,15 @@ services:
 当你使用 `docker-compose up -d` 启动应用之后，接着使用 `docker-compose ps`，就可以看到包含密码的日志输出啦：
 
 ```bash
-docker-flare-flare-1  | 2022/02/16 14:11:14 用户未指定 `FLARE_USER`，使用默认用户名 flare
-docker-flare-flare-1  | 2022/02/16 14:11:14 用户未指定 `FLARE_PASS`，自动生成应用密码 7fc0e7cbc1356c93
-docker-flare-flare-1  | 2022/02/16 14:11:14 
-docker-flare-flare-1  | 2022/02/16 14:11:14 Flare v0.2.5-DD66850 linux/amd64 BuildDate=2022-02-16T13:36:31+0800
-docker-flare-flare-1  | 2022/02/16 14:11:14 
-docker-flare-flare-1  | 2022/02/16 14:11:14 服务端口 5005
-docker-flare-flare-1  | 2022/02/16 14:11:14 合并页面资源请求 false
-docker-flare-flare-1  | 2022/02/16 14:11:14 启用应用离线模式 false
-docker-flare-flare-1  | 2022/02/16 14:11:14 启用免登陆模式 true
-docker-flare-flare-1  | 2022/02/16 14:11:14 应用已启动 🚀
+docker-flare-flare-1  | 2022/02/17 13:35:04 用户未指定 `FLARE_USER`，使用默认用户名 flare
+docker-flare-flare-1  | 2022/02/17 13:35:04 用户未指定 `FLARE_PASS`，自动生成应用密码 cd888435ec5678d6
+docker-flare-flare-1  | 2022/02/17 13:35:04 
+docker-flare-flare-1  | 2022/02/17 13:35:04 Flare v0.2.6-E7DDC50 linux/amd64 BuildDate=2022-02-17T13:10:50+0800
+docker-flare-flare-1  | 2022/02/17 13:35:04 
+docker-flare-flare-1  | 2022/02/17 13:35:04 服务端口 5005
+docker-flare-flare-1  | 2022/02/17 13:35:04 合并页面资源请求 false
+docker-flare-flare-1  | 2022/02/17 13:35:04 启用应用离线模式 false
+docker-flare-flare-1  | 2022/02/17 13:35:04 启用免登陆模式 true
+docker-flare-flare-1  | 2022/02/17 13:35:04 启用教程模块，可以访问 /guide 来获取“使用向导”。
+docker-flare-flare-1  | 2022/02/17 13:35:04 应用已启动 🚀
 ```
