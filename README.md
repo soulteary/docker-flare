@@ -36,7 +36,10 @@ cd docker-flare
 启动应用非常简单，如果你习惯使用 Docker，可以执行：
 
 ```bash
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.7
+# 可以使用最新镜像
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
+# 也可以追求明确，使用固定版本
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.8
 ```
 
 如果你习惯使用 docker-compose，只需要执行：

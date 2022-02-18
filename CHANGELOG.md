@@ -4,6 +4,7 @@
 
 ## 目录
 
+* [0.2.8](#027---2022-02-18)
 * [0.2.7](#027---2022-02-17)
 * [0.2.6](#026---2022-02-17)
 * [0.2.5](#025---2022-02-16)
@@ -12,6 +13,14 @@
 * [0.2.1](#021---2022-02-07)
 * [0.2.0](#020---2022-01-30)
 * [0.1.0](#010---2022-01-27)
+
+# 0.2.8 - 2022-02-18
+
+当前版本优化了三个用户反馈的小细节。
+
+- [优化] 添加了搜索返回功能。 https://github.com/soulteary/docker-flare/issues/10 （感谢 @eallion 建议）
+- [优化] 简单调整了移动端展示，下一步计划先开放模版和自定义主题。 https://github.com/soulteary/docker-flare/issues/6 （感谢 @flashliao 建议）
+- [新增] 为容器镜像添加了 `latest` 标签。 https://github.com/soulteary/docker-flare/issues/8 https://github.com/soulteary/docker-flare/issues/7 （感谢 @viticis @eallion 建议）
 
 ## 0.2.7 - 2022-02-17
 
