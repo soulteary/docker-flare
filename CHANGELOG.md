@@ -20,7 +20,7 @@
 当前版本新增了在线编辑功能，以及一个用于聚合内部工具地址的帮助页面，完善了程序启动时和环境变量以及命令行参数的交互，并进行了大量重构工作。
 
 - [新增] 新增在线编辑器功能，解决一些小伙伴提到的“随时随地”编辑的需求。 https://github.com/soulteary/docker-flare/issues/11
-- [新增] 考虑到接下来随着程序功能完善，内部工具链接会越来越多，新增一个“帮助页面”，将程序内置链接集中存放和展示。 https://github.com/soulteary/docker-flare/issues/19
+- [新增] 考虑到接下来随着程序功能完善，内部工具链接会越来越多，新增一个“帮助页面”，将程序内置链接集中存放和展示。 https://github.com/soulteary/docker-flare/issues/19 https://github.com/soulteary/docker-flare/issues/14#issuecomment-1044430872 (感谢 @lmm214 提醒 )
 - [优化] 调整部分程序内部链接，并新增废弃提醒（可通过命令行或环境变量进行关闭），完善程序日志输出实现，重构部分功能，为之后完全开源做准备。
 - [优化] 重构程序初始化相关功能，程序目前支持使用命令行参数和环境变量两种方式来进行初始化。 https://github.com/soulteary/docker-flare/issues/5 （感谢 @flashliao 建议）
 
