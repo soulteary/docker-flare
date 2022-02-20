@@ -8,12 +8,15 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
+支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载 1k+，期待你的反馈 :)
+
 支持 x86 以及常见的 ARM 设备，应用资源消耗非常低：
 
 - CPU: < 1%
 - MEM: < 30M
 - Docker Image: < 10M
 
+![Flare Docker Pulls](./screenshots/docker-pulls.png)
 ![Flare Docker Image Size](./screenshots/docker-image-size.png)
 
 ## 快速上手
