@@ -54,13 +54,30 @@ docker-compose up -d
 
 ![Flare Web UI](./screenshots/ui.png)
 
-### 应用使用向导
+### 程序使用向导
 
 为了方便你的使用，我制作了一个简单的向导程序，在 flare 启动之后，你可以随时访问 `/guide`，获取 flare 基础界面功能的介绍。
 
 ![Flare Guide](./screenshots/flare-guide.png)
 
-## 应用性能
+
+## 程序在线编辑页面
+
+为了满足随时随地编辑的需求，程序新增了“在线编辑”的页面。
+
+![Flare Editor](./screenshots/editor-beta.png)
+
+工具页面地址：`/editor`
+
+## 程序帮助页面
+
+为了减少不必要的地址记忆负担，程序新增了一个“帮助页面”，默认展示所有的程序内的工具页面。
+
+![Flare Help](./screenshots/flare-help.png)
+
+工具页面地址：`/help`
+
+## 程序性能
 
 “快”作为 Flare 对主要优势而言，自然是需要“满分”来加持。
 
