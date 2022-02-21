@@ -26,9 +26,9 @@
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.9 flare -h
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.10 flare -h
 
-Flare v0.2.9-F179280 linux/amd64 BuildDate=2022-02-20T22:55:42+0800
+Flare v0.2.10-2A94E4D linux/amd64 BuildDate=2022-02-21T11:31:03+0800
 
 支持命令:
   -p, --port int        指定监听端口 (default 5005)
