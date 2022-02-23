@@ -14,6 +14,8 @@ services:
       - FLARE_USER=flare
       # 指定你自己的账号密码，如未设置 `FLARE_USER`，则会默认生成密码并展示在应用启动日志中
       - FLARE_PASS=your_password
+      # 首页需要登陆才可见
+      - FLARE_VISIBILITY=PRIVATE
     ports:
       # 根据自己需求设置端口，如需调整访问端口为 8080，
       # 可参考修改为 `- 8080:5005`
