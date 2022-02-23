@@ -19,27 +19,32 @@
 禁用登陆模式             "FLARE_DISABLE_LOGIN"
 启用离线模式             "FLARE_OFFLINE"
 启用在线编辑器功能        "FLARE_EDITOR"
+首页是否需要登陆可见      "FLARE_VISIBILITY"
 ```
 
 环境变量使用示例： `FLARE_OFFLINE=0` 或 `FLARE_OFFLINE=false`
 
+完全的环境变量列表，可以[参考这里](https://github.com/soulteary/flare/blob/main/model/cmd.go)。
+
+
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.2.10 flare -h
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.3.1 flare -h
 
-Flare v0.2.10-2A94E4D linux/amd64 BuildDate=2022-02-21T11:31:03+0800
+Flare v0.3.1-85EED66 linux/amd64 BuildDate=2022-02-23T10:22:43+0800
 
 支持命令:
-  -p, --port int        指定监听端口 (default 5005)
-  -g, --guide           启用应用向导 (default true)
-  -m, --mini_request    使用请求最小化模式
-  -o, --offline         启用离线模式
-  -l, --disable_login   禁用账号登陆 (default true)
-  -n, --enable_notice   启用废弃日志警告 (default true)
-  -e, --enable_editor   启用编辑器 (default true)
-  -v, --version         显示应用版本号
-  -h, --help            显示帮助
+  -p, --port int            指定监听端口 (default 5005)
+  -g, --guide               启用应用向导 (default true)
+  -s, --visibility string   调整网站整体可见性 (default "DEFAULT")
+  -m, --mini_request        使用请求最小化模式
+  -o, --offline             启用离线模式
+  -l, --disable_login       禁用账号登陆 (default true)
+  -n, --enable_notice       启用废弃日志警告 (default true)
+  -e, --enable_editor       启用编辑器 (default true)
+  -v, --version             显示应用版本号
+  -h, --help                显示帮助
 ```
 
 ## 功能说明
