@@ -4,6 +4,7 @@
 
 ## 目录
 
+* [0.3.3](#033---2022-03-10)
 * [0.3.2](#032---2022-02-23)
 * [0.3.1](#031---2022-02-23)
 * [0.2.10](#027---2022-02-21)
@@ -17,6 +18,17 @@
 * [0.2.1](#021---2022-02-07)
 * [0.2.0](#020---2022-01-30)
 * [0.1.0](#010---2022-01-27)
+
+
+# 0.3.3 - 2022-03-10
+
+- [新增] 支持从 envfile 中设置应用启动选项。
+- [修正] 现在支持完全从 env 中设置应用启动配置，实现诸如禁用离线模式，设置用户账号密码等。
+- [修正] DockerHub 中镜像版本不是最新内容。https://github.com/soulteary/docker-flare/issues/43  （感谢 @flashliao @shuax @ZhXWei 反馈 ）
+- [修正] 禁用界面应用选项后，帮助界面不展示内容。 https://github.com/soulteary/docker-flare/issues/39 （感谢 @harrison-guo-chn 反馈）
+- [优化] 禁用 Chrome 默认弹出烦人的翻译对话框。 https://github.com/soulteary/docker-flare/issues/41 （感谢 @shuax 反馈）
+- [优化] 新增界面选项，不再强制界面中的英文展示为大写。 https://github.com/soulteary/docker-flare/issues/31 （感谢 @llussy @kscu 反馈）
+- [优化] 拆分和重构程序构建脚本，为自定义主题做准备。
 
 # 0.3.2 - 2022-02-23
 
