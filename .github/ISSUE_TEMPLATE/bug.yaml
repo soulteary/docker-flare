@@ -1,0 +1,45 @@
+name: 八哥
+description: File a bug report
+labels: [八阿哥 🐛, 悬而未决 🥷]
+assignees:
+  - soulteary
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你对于 Flare 感兴趣，请根据你的想法填写下面的表格。
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 你遇到了什么样的麻烦？
+      description: 除了描述遇到的问题之外，也请描述你预期的功能结果。
+    validations:
+      required: true
+  - type: textarea
+    id: reproducible
+    attributes:
+      label: 如何复现这个问题？
+      description: 简单描述如何遇到这个问题，你可以在这里添加图片、日志等帮助我来理解你遇到的问题。
+    validations:
+      required: true
+  - type: textarea
+    id: app-version
+    attributes:
+      label: 应用版本
+      description: 你使用的程序或镜像版本是？
+    validations:
+      required: true
+  - type: checkboxes
+    id: search
+    attributes:
+      label: 搜索
+      options:
+        - label: 在提交这个表格之前，我已经进行了相关问题搜索，没有找到相关的问题或解决方案。
+          required: true
+  - type: textarea
+    id: ctx
+    attributes:
+      label: 补充描述
+      description: 可以在这里填写要补充的内容
+    validations:
+      required: false
