@@ -1,5 +1,5 @@
-name: 八哥
-description: File a bug report
+name: 错误反馈
+description: 反馈一个八阿哥
 labels: [八阿哥 🐛, 悬而未决 🥷]
 assignees:
   - soulteary
