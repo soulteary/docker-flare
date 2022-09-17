@@ -30,9 +30,10 @@
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.3.1 flare -h
+docker run --rm -it -p 5005:5005 soulteary/flare:0.4.0 flare -h
+找不到配置文件config，创建默认配置。
 
-Flare v0.3.1-85EED66 linux/amd64 BuildDate=2022-02-23T10:22:43+0800
+Flare v0.4.0-9D209E38A3BC7637E14E0762EFC7E4BC8F39D03E linux/amd64 BuildDate=2022-09-17T12:42:33Z
 
 支持命令:
   -p, --port int            指定监听端口 (default 5005)
@@ -43,6 +44,7 @@ Flare v0.3.1-85EED66 linux/amd64 BuildDate=2022-02-23T10:22:43+0800
   -l, --disable_login       禁用账号登陆 (default true)
   -n, --enable_notice       启用废弃日志警告 (default true)
   -e, --enable_editor       启用编辑器 (default true)
+  -c, --disable_csp         禁用CSP
   -v, --version             显示应用版本号
   -h, --help                显示帮助
 ```

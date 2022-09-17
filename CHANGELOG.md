@@ -4,6 +4,7 @@
 
 ## 目录
 
+* [0.4.0](#040---2022-09-17)
 * [0.3.3](#033---2022-03-10)
 * [0.3.2](#032---2022-02-23)
 * [0.3.1](#031---2022-02-23)
@@ -19,6 +20,19 @@
 * [0.2.0](#020---2022-01-30)
 * [0.1.0](#010---2022-01-27)
 
+
+# 0.4.0 - 2022-09-17
+
+- [新增] 支持关闭程序的 CSP 策略，允许用户自由选择添加“统计脚本”（如GA）。 https://github.com/soulteary/docker-flare/issues/72 （感谢 @onmpen 反馈问题）
+- [新增] 支持了新的架构 ARM32v6，现在程序可以跑在更多的设备上了。
+- [新增] 新增了 Linux 和 macOS 操作系统可以直接运行的程序。https://github.com/soulteary/flare/releases/tag/0.4.0 https://github.com/soulteary/docker-flare/issues/35 （感谢 @ToSeeAll 的提问）
+- [修正] 重新调整了登陆相关逻辑，确保各种浏览器都能够正确处理跳转逻辑。https://github.com/soulteary/docker-flare/issues/68 （感谢 @hzmabin 反馈问题）
+- [修正] 修正全站需要登陆的时候，不展示自定义页脚的问题。https://github.com/soulteary/docker-flare/issues/77 （感谢 @404gods 反馈问题）
+- [修正] 修正关闭组件时，不展示日期的问题。https://github.com/soulteary/docker-flare/issues/44 （感谢 @shuax 反馈问题）
+- [优化] 拆分和重构程序，进行部分功能调整和问题修正，提升项目质量，为接下来支持新功能做准备。 https://github.com/soulteary/flare/compare/v0.0.17...0.4.0
+- [优化] 改进构建方式，将构建迁至 GitHub Action，让构建更透明，大家用的更放心。🎉
+
+最后，感谢 @@JKnuts 在我不在的日子里，为其他同学解答问题♥️
 
 # 0.3.3 - 2022-03-10
 
