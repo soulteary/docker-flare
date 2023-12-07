@@ -30,10 +30,10 @@
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 soulteary/flare:0.4.2 flare -h
+docker run --rm -it -p 5005:5005 soulteary/flare:0.4.3 flare -h
 找不到配置文件config，创建默认配置。
 
-Flare v0.4.1-332C2E0E24789AA4D7F578AA14E7BA6F62970ADA linux/amd64 BuildDate=2023-05-07T03:06:36Z
+Flare v0.4.3-0ACDB1AC2E46F39CEBBEB70921A8234465FA9837 linux/arm64 BuildDate=2023-12-07T13:08:58Z
 
 支持命令:
   -p, --port int            指定监听端口 (default 5005)
