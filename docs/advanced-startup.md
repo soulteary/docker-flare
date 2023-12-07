@@ -30,7 +30,7 @@
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 soulteary/flare:0.4.1 flare -h
+docker run --rm -it -p 5005:5005 soulteary/flare:0.4.2 flare -h
 找不到配置文件config，创建默认配置。
 
 Flare v0.4.1-332C2E0E24789AA4D7F578AA14E7BA6F62970ADA linux/amd64 BuildDate=2023-05-07T03:06:36Z
