@@ -80,3 +80,30 @@ Flare v0.4.3-0ACDB1AC2E46F39CEBBEB70921A8234465FA9837 linux/arm64 BuildDate=2023
 ### 指定端口：`port`
 
 这个参数用于自定义服务端口，使用 `docker-flare` 的小伙伴可以忽略。
+
+### 动态链接
+
+> [!TIP]
+> Since: v0.4.2 - 2023.12.06
+
+根据环境，进行动态链接的展示和切换。
+
+假设 flare 服务的首页地址为 `https://192.168.0.1:5005/`，以下可用的各参数及其对应解析结果：
+
+| 参数名 | 解析结果 |
+| --- | --- |
+| `host` | `192.168.0.1:5005` |
+| `hostname` | `192.168.0.1` |
+| `href` | `https://192.168.0.1:5005/` |
+| `origin` | `https://192.168.0.1:5005` |
+| `pathname` | `/` |
+| `port` | `5005` |
+| `protocol` | `https:` |
+
+**示例**
+
+假设某书签网址配置为 `https://{hostname}:8888/test` 时:
+
+- 当 flare 服务的首页地址为 `https://192.168.0.1:5005/`，其显示为 `https://192.168.0.1:8888/test`。
+- 当 flare 服务的首页地址为 `https://172.17.0.1:5005/`，其显示为 `https://172.17.0.1:8888/test`。
+- 当 flare 服务的首页地址为 `https://link.example.com/`，其显示为 `https://link.example.com:8888/test`。
