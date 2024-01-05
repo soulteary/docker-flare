@@ -46,8 +46,8 @@ cd docker-flare
 docker pull soulteary/flare
 docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
-docker pull soulteary/flare:0.4.3
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.4.3
+docker pull soulteary/flare:0.5.0
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.5.0
 ```
 
 如果你习惯使用 docker-compose，只需要执行：
