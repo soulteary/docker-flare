@@ -30,10 +30,10 @@
 ## 命令行参数
 
 ```
-docker run --rm -it -p 5005:5005 soulteary/flare:0.5.0 flare                         
+docker run --rm -it -p 5005:5005 soulteary/flare:0.5.1 flare
 找不到配置文件config，创建默认配置。
 [22:49:49.562] INFO: Flare - 🏂 Challenge all bookmarking apps and websites directories, Aim to Be a best performance monster.
-[22:49:49.562] INFO: 程序信息： {"GOGS/ARCH":"linux/arm64","commit":"939551F662C12D0067C6952CC7DC036FA713A506","date":"2024-01-05T13:59:30Z","version":"0.5.0"}
+[11:23:23.622] INFO: 程序信息： {"GOGS/ARCH":"linux/arm64","commit":"4D2A2143715A30FC1646DE067847322A8C6F91BF","date":"2024-01-06T03:24:10Z","version":"0.5.1"}
 [22:49:49.562] INFO: 程序服务端口 {"port":5005}
 [22:49:49.562] INFO: 页面请求合并 {"mini_request":false}
 [22:49:49.562] INFO: 启用离线模式 {"offline":false}
