@@ -18,12 +18,11 @@ services:
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
     # 启用账号登陆模式
-    command: flare --nologin=0
+    command: flare --disable_login=0
     environment:
-      # 如需开启用户登陆模式，需要先设置 `nologin` 启动参数为 `0`
-      # 如开启 `nologin`，未设置 FLARE_USER，则默认用户为 `flare`
+      # 启用用户登陆模式后，如未设置 FLARE_USER，则默认用户为 flare
       - FLARE_USER=flare
-      # 指定你自己的账号密码，如未设置 `FLARE_USER`，则会默认生成密码并展示在应用启动日志中
+      # 指定自己的密码；如未设置 FLARE_PASS，则生成密码并展示在启动日志中
       - FLARE_PASS=your_password
     ports:
       - 5005:5005
@@ -33,18 +32,12 @@ services:
 
 更多示例，可以参考[示例文件夹](../example/)。
 
+如果反向代理终止 HTTPS、再通过 HTTP 连接 Flare，请在服务的 `environment` 中添加 `FLARE_COOKIE_SECURE=true`，并通过 HTTPS 访问。普通 HTTP 部署无需开启该选项。完整配置优先级和参数见[自定义启动参数](./advanced-startup.md#https-反向代理的会话-cookiecookie_secure)。
+
 在执行命令前，不妨执行 `docker pull soulteary/flare` 确认使用的应用镜像是新版本。
 
-当你使用 `docker-compose up -d` 启动应用之后，接着使用 `docker-compose ps`，就可以看到包含密码的日志输出啦：
+使用 `docker compose up -d flare` 启动后，可以通过以下命令查看服务日志；未指定 `FLARE_PASS` 时，可从启动日志中获取生成的密码。自行指定密码时，使用设置的密码即可。
 
 ```bash
-INFO[2023-05-07T11:13:13+08:00] Flare v0.4.1-332C2E0E24789AA4D7F578AA14E7BA6F62970ADA linux/amd64 BuildDate=2023-05-07T03:06:36Z
-INFO[2023-05-07T11:13:13+08:00]
-INFO[2023-05-07T11:13:13+08:00] 程序服务端口 5005
-INFO[2023-05-07T11:13:13+08:00] 页面请求合并 false
-INFO[2023-05-07T11:13:13+08:00] 启用离线模式 false
-INFO[2023-05-07T11:13:13+08:00] 已禁用登陆模式，用户可直接调整应用设置。
-INFO[2023-05-07T11:13:13+08:00] 在线编辑模块启用，可以访问 /editor 来进行数据编辑。
-INFO[2023-05-07T11:13:13+08:00] 向导模块启用，可以访问 /guide 来获取程序使用帮助。
-INFO[2023-05-07T11:13:13+08:00] 程序已启动完毕 🚀
+docker compose logs flare
 ```

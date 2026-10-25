@@ -4,7 +4,7 @@
 
 默认推荐使用一种方案进行参数配置，如果你有特殊需求，需要混合使用。
 
-请注意，命令行参数拥有更高的优先级，会覆盖环境变量中的参数。
+配置优先级为：命令行参数 > 应用工作目录中的 `.env` > 环境变量。
 
 
 ## 环境变量
@@ -20,11 +20,12 @@
 启用离线模式             "FLARE_OFFLINE"
 启用在线编辑器功能        "FLARE_EDITOR"
 首页是否需要登陆可见      "FLARE_VISIBILITY"
+强制使用仅限 HTTPS 的会话 Cookie "FLARE_COOKIE_SECURE"
 ```
 
 环境变量使用示例： `FLARE_OFFLINE=0` 或 `FLARE_OFFLINE=false`
 
-完整的环境变量列表，可以[参考 0.6.1 的配置定义](https://github.com/soulteary/flare/blob/0.6.1/config/model/cmd.go)。
+完整的环境变量列表，可以[参考 0.6.3 的配置定义](https://github.com/soulteary/flare/blob/0.6.3/config/model/cmd.go)。
 
 
 ## 命令行参数
@@ -32,13 +33,13 @@
 使用镜像内的帮助命令查看当前版本支持的完整参数：
 
 ```bash
-docker run --rm soulteary/flare:0.6.1 flare --help
+docker run --rm soulteary/flare:0.6.3 flare --help
 ```
 
-例如，使用离线模式启动 0.6.1：
+例如，使用离线模式启动 0.6.3：
 
 ```bash
-docker run --rm -it -p 5005:5005 soulteary/flare:0.6.1 flare --offline=1
+docker run --rm -it -p 5005:5005 soulteary/flare:0.6.3 flare --offline=1
 ```
 
 ## 功能说明
@@ -61,6 +62,25 @@ docker run --rm -it -p 5005:5005 soulteary/flare:0.6.1 flare --offline=1
 此参数默认开启，方便在 HomeLab 或本地使用的小伙伴，减少不必要的操作。
 
 禁用方法，在 flare 启动参数后添加 `--disable_login=0`
+
+### HTTPS 反向代理的会话 Cookie：`cookie_secure`
+
+当反向代理对外提供 HTTPS、再通过 HTTP 连接 Flare 时，请设置环境变量 `FLARE_COOKIE_SECURE=true`，或添加启动参数 `--cookie_secure=true`，并始终通过 HTTPS 访问。
+
+普通 HTTP 部署可不设置此项，或设为 `false`。Flare 直接接收 TLS 请求时会自动使用 `Secure` Cookie，即使此项设为 `false` 也不会关闭该保护。该选项从 0.6.2 起可用，登录和退出使用相同的 Cookie 策略。
+
+Docker Compose 的项目 `.env` 不会自动把变量传入容器；请在 `flare` 服务的 `environment` 中配置，例如：
+
+```yaml
+environment:
+  - FLARE_COOKIE_SECURE=true
+```
+
+### 日期、时间与时区
+
+0.6.3 起，实时时钟、秒数显示和显示时区在 **设置 → 外观 → 模块设置** 中配置，或通过 `config.yml` 的 `Clock` 配置块调整。未配置时保持跟随服务器时区、包含秒数的静态显示。
+
+容器的 `TZ` 只决定进程本地时区。实时模式使用访问设备的系统时间，再按服务器、访问设备或指定时区换算，不会修改主机时间，也不提供校时。完整字段和示例见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.3/docs/clock.md)。
 
 ### 离线模式：`offline`
 

@@ -11,7 +11,7 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
-当前应用版本为 [Flare 0.6.2](https://github.com/soulteary/flare/releases/tag/0.6.2)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+当前应用版本为 [Flare 0.6.3](https://github.com/soulteary/flare/releases/tag/0.6.3)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
 
 支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载过万，期待你的反馈 :)
 
@@ -48,26 +48,26 @@ cd docker-flare
 docker pull soulteary/flare
 docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
-docker pull soulteary/flare:0.6.2
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.2
+docker pull soulteary/flare:0.6.3
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.3
 ```
 
 也可以使用 GitHub Container Registry，无需登录即可拉取：
 
 ```bash
-docker pull ghcr.io/soulteary/flare:0.6.2
-docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.2
+docker pull ghcr.io/soulteary/flare:0.6.3
+docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.3
 ```
 
-Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.2` 固定版本和 `latest` 标签。
+Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.3` 固定版本和 `latest` 标签。
 
-如果你习惯使用 docker-compose，只需要执行：
+如果你习惯使用 Docker Compose，只需要执行：
 
 ```bash
-docker-compose up -d
+docker compose up -d flare
 ```
 
-如果你是 Traefik 用户，可以参考 `docker-compose.traefik.yml` 配置文件来使用。
+如果你是 Traefik 用户，可以参考 [Traefik 部署示例](./example/traefik/docker-compose.yml)。
 
 不论是哪一种方式，在命令执行完毕之后，默认情况下，我们访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
@@ -75,7 +75,9 @@ docker-compose up -d
 
 ### 升级现有部署
 
-0.6.2 修复了 HTTP 登录后反复返回登录页的问题，并新增浏览器书签 HTML / Flare YAML 导入导出。详情见 [变更记录](./CHANGELOG.md) 和 [Flare 0.6.2 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.2)。
+0.6.3 新增可选的实时时钟、秒数显示和显示时区设置，并将依赖更新到 `memfs-kit v1.1.0` 和包含安全补丁的 `Echo v5.4.1`。现有配置默认继续使用跟随服务器时区、包含秒数的静态显示，无需迁移。详情见 [变更记录](./CHANGELOG.md) 和 [Flare 0.6.3 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.3)。
+
+0.6.2 的 HTTP 登录修复、浏览器书签 HTML / Flare YAML 导入导出及导入前备份继续保留。
 
 如果反向代理终止 HTTPS、再以 HTTP 连接 Flare，请为服务设置 `FLARE_COOKIE_SECURE=true`，并始终通过 HTTPS 访问。普通 HTTP 部署无需开启该选项。
 
@@ -87,11 +89,21 @@ docker compose up -d flare
 docker compose exec flare flare --version
 ```
 
-需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.2`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
+需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.3`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
 
-使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.2`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
+使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.3`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
 
 如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 起默认模式也已恢复正常。
+
+### 日期、时间与时区
+
+0.6.3 起，进入 **设置 → 外观 → 模块设置**，启用日期时间后，可以选择页面加载时显示或实时更新、是否显示秒数，以及跟随服务器、跟随访问设备或指定显示时区。指定时区支持搜索建议，也可以输入 `Asia/Shanghai`、`America/New_York` 等 IANA 地理时区名称或 `UTC`；修改选项时会显示预览。
+
+未配置 `Clock` 时，继续使用跟随服务器时区、包含秒数的静态显示。选择跟随服务器时，时区通常由容器的 `TZ` 配置；显示时区设置不会修改服务器时钟、进程全局时区或天气城市。
+
+实时显示使用**访问设备的系统时间**，再换算到所选时区；即使选择跟随服务器，也只是跟随服务器的时区。服务器或指定时区的静态显示使用服务器时间，设备时区的静态显示只在初始化时读取一次设备时间。设备时间不准会影响实时显示；此功能不会进行 NTP 校时，也不会请求外部时间接口。
+
+禁用 JavaScript 或浏览器不支持所需时区能力时，页面会保留可读的服务端时间。配置字段、时区优先级与降级行为见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.3/docs/clock.md)。
 
 ### 程序使用向导
 
@@ -110,7 +122,7 @@ docker compose exec flare flare --version
 
 0.6.2 起，可在编辑器中选择「导入 / 导出浏览器书签与 Flare YAML」，预览后合并导入 Chrome、Edge、Firefox 等浏览器导出的书签 HTML，或 Flare YAML；也可导出 HTML / YAML 和下载最近一次导入前备份。
 
-导入支持 UTF-8、最大 8 MiB 的文件。备份位于工作目录下的 `.flare-bookmark-backups/`，请与应用数据一起持久化。YAML 合并导入不等于完整配置恢复。详见 [书签迁移说明](https://github.com/soulteary/flare/blob/0.6.2/docs/bookmark-transfer.md)。
+导入支持 UTF-8、最大 8 MiB 的文件。备份位于工作目录下的 `.flare-bookmark-backups/`；使用默认 Docker / Compose 部署时，容器中的路径是 `/app/.flare-bookmark-backups/`，对应宿主机的 `./app/.flare-bookmark-backups/`，现有的 `./app:/app` 挂载已包含该目录。自定义工作目录时，请一并持久化其中的备份目录。YAML 合并导入不等于完整配置恢复。详见 [书签迁移说明](https://github.com/soulteary/flare/blob/0.6.3/docs/bookmark-transfer.md)。
 
 ## 程序帮助页面
 
@@ -133,6 +145,7 @@ docker compose exec flare flare --version
 - [自定义启动参数](./docs/advanced-startup.md)
 - [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
 - [如何挑选和使用图标](./docs/material-design-icons.md)
+- [日期、时间与时区](https://github.com/soulteary/flare/blob/0.6.3/docs/clock.md)
 - [如何和 Traefik 一起使用](https://github.com/soulteary/traefik-example)
 
 ## 相比较 Flame
