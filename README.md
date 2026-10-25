@@ -11,6 +11,8 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
+当前应用版本为 [Flare 0.6.1](https://github.com/soulteary/flare/releases/tag/0.6.1)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+
 支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载过万，期待你的反馈 :)
 
 支持 x86 以及常见的 ARM (ARM32v6、ARM32v7、ARM64v8)设备，应用资源消耗非常低：
@@ -46,9 +48,18 @@ cd docker-flare
 docker pull soulteary/flare
 docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
-docker pull soulteary/flare:0.5.1
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.5.1
+docker pull soulteary/flare:0.6.1
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.1
 ```
+
+也可以使用 GitHub Container Registry，无需登录即可拉取：
+
+```bash
+docker pull ghcr.io/soulteary/flare:0.6.1
+docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.1
+```
+
+Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.1` 固定版本和 `latest` 标签。
 
 如果你习惯使用 docker-compose，只需要执行：
 
@@ -61,6 +72,24 @@ docker-compose up -d
 不论是哪一种方式，在命令执行完毕之后，默认情况下，我们访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
 ![Flare Web UI](./screenshots/ui.png)
+
+### 升级现有部署
+
+0.6.1 修复了 0.6.0 默认模式下内置 MDI 图标无法显示的问题，以及缺失资源被错误缓存的问题。详情见 [变更记录](./CHANGELOG.md) 和 [Flare #117](https://github.com/soulteary/flare/pull/117)。
+
+默认的 `docker-compose.yml` 使用 `soulteary/flare:latest`。在现有部署目录中，拉取新镜像并重建服务：
+
+```bash
+docker compose pull flare
+docker compose up -d flare
+docker compose exec flare flare --version
+```
+
+需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.1`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
+
+使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.1`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
+
+如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 的默认模式也已恢复正常。
 
 ### 程序使用向导
 
