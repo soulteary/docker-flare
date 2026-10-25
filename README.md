@@ -11,7 +11,7 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
-当前应用版本为 [Flare 0.6.1](https://github.com/soulteary/flare/releases/tag/0.6.1)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+当前应用版本为 [Flare 0.6.2](https://github.com/soulteary/flare/releases/tag/0.6.2)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
 
 支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载过万，期待你的反馈 :)
 
@@ -48,18 +48,18 @@ cd docker-flare
 docker pull soulteary/flare
 docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
-docker pull soulteary/flare:0.6.1
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.1
+docker pull soulteary/flare:0.6.2
+docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.2
 ```
 
 也可以使用 GitHub Container Registry，无需登录即可拉取：
 
 ```bash
-docker pull ghcr.io/soulteary/flare:0.6.1
-docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.1
+docker pull ghcr.io/soulteary/flare:0.6.2
+docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.2
 ```
 
-Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.1` 固定版本和 `latest` 标签。
+Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.2` 固定版本和 `latest` 标签。
 
 如果你习惯使用 docker-compose，只需要执行：
 
@@ -75,7 +75,9 @@ docker-compose up -d
 
 ### 升级现有部署
 
-0.6.1 修复了 0.6.0 默认模式下内置 MDI 图标无法显示的问题，以及缺失资源被错误缓存的问题。详情见 [变更记录](./CHANGELOG.md) 和 [Flare #117](https://github.com/soulteary/flare/pull/117)。
+0.6.2 修复了 HTTP 登录后反复返回登录页的问题，并新增浏览器书签 HTML / Flare YAML 导入导出。详情见 [变更记录](./CHANGELOG.md) 和 [Flare 0.6.2 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.2)。
+
+如果反向代理终止 HTTPS、再以 HTTP 连接 Flare，请为服务设置 `FLARE_COOKIE_SECURE=true`，并始终通过 HTTPS 访问。普通 HTTP 部署无需开启该选项。
 
 默认的 `docker-compose.yml` 使用 `soulteary/flare:latest`。在现有部署目录中，拉取新镜像并重建服务：
 
@@ -85,11 +87,11 @@ docker compose up -d flare
 docker compose exec flare flare --version
 ```
 
-需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.1`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
+需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.2`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
 
-使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.1`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
+使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.2`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
 
-如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 的默认模式也已恢复正常。
+如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 起默认模式也已恢复正常。
 
 ### 程序使用向导
 
@@ -105,6 +107,10 @@ docker compose exec flare flare --version
 ![Flare Editor](./screenshots/editor-beta.png)
 
 工具页面地址：`/editor`
+
+0.6.2 起，可在编辑器中选择「导入 / 导出浏览器书签与 Flare YAML」，预览后合并导入 Chrome、Edge、Firefox 等浏览器导出的书签 HTML，或 Flare YAML；也可导出 HTML / YAML 和下载最近一次导入前备份。
+
+导入支持 UTF-8、最大 8 MiB 的文件。备份位于工作目录下的 `.flare-bookmark-backups/`，请与应用数据一起持久化。YAML 合并导入不等于完整配置恢复。详见 [书签迁移说明](https://github.com/soulteary/flare/blob/0.6.2/docs/bookmark-transfer.md)。
 
 ## 程序帮助页面
 
