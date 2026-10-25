@@ -33,6 +33,7 @@
 - [修正] 修复 0.6.0 默认模式下内置 MDI 图标请求返回 500 的问题。Echo v5 的静态文件服务要求文件支持定位读取，原内存文件实现不满足该接口；现在通过独立的可定位读取器提供生成的 SVG。https://github.com/soulteary/docker-flare/issues/184 https://github.com/soulteary/flare/pull/117
 - [修正] 图标使用与内容对应的 ETag，缺失资源返回 404；避免错误响应被长期缓存，以及共享 ETag 将不存在的资源错误地变成 304。
 - [优化] 完善图标缓存的并发访问，以及 GET、HEAD、Range、条件请求和主题切换的回归验证；请求最小化模式继续支持内联 SVG。
+- [发布] 新增 GHCR 镜像源 `ghcr.io/soulteary/flare:0.6.1` 和 `:latest`，与 Docker Hub 镜像保持相同 digest；四个平台已通过公开访问验证。后续 Flare 稳定版本会在 Docker Hub 发布完成后自动同步到 GHCR。
 - [文档] 更新固定版本示例和升级步骤。默认 Compose 配置继续使用 `soulteary/flare:latest`；更新现有服务需要执行 `docker compose pull flare` 和 `docker compose up -d flare`。
 
 更早版本的应用变更请参考 [0.5.2](https://github.com/soulteary/flare/releases/tag/0.5.2) 和 [0.6.0](https://github.com/soulteary/flare/releases/tag/0.6.0) 的发布说明。

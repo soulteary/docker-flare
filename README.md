@@ -52,6 +52,15 @@ docker pull soulteary/flare:0.6.1
 docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.1
 ```
 
+也可以使用 GitHub Container Registry，无需登录即可拉取：
+
+```bash
+docker pull ghcr.io/soulteary/flare:0.6.1
+docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.1
+```
+
+Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.1` 固定版本和 `latest` 标签。
+
 如果你习惯使用 docker-compose，只需要执行：
 
 ```bash
@@ -77,6 +86,8 @@ docker compose exec flare flare --version
 ```
 
 需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.1`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
+
+使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.1`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
 
 如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 的默认模式也已恢复正常。
 
