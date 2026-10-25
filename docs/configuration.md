@@ -1,7 +1,7 @@
 # 配置参考与版本边界
 
-稳定版为 **0.6.4**；主分支文档还包含尚未发布的新搜索和编辑器。稳定部署请阅读对应
-版本文档，核对运行中的版本和镜像 digest。源码功能合并后不会自动更新镜像。
+稳定版为 **0.6.5**，包含新搜索、列表／表单／批量编辑器和布局设置。稳定部署请阅读对应
+版本文档，核对运行中的版本和镜像 digest；后续源码功能合并不代表新的镜像已经发布。
 
 配置优先级：命令行 > 应用工作目录 `.env` > 容器环境变量 > 默认值。Compose 项目
 `.env` 仅用于插值，不会自动传入容器；使用服务的 `environment` 或 `env_file`。
@@ -27,7 +27,7 @@
 
 布尔值建议写字符串 `"true"`/`"false"`。`FLARE_DEBUG=on` 在正式版也可开启应用 DEBUG 日志，但不会开启开发资源模式。
 启动参数修改后重启进程；外部直接修改 YAML 后也需重启，界面保存则用于后续请求。
-完整字段和开发分支行为见[源码配置参考](https://github.com/soulteary/flare/blob/main/docs/configuration.md)。
+完整字段和版本行为见[0.6.5 配置参考](https://github.com/soulteary/flare/blob/0.6.5/docs/configuration.md)。
 
 | 目标 | DISABLE_LOGIN | VISIBILITY |
 | --- | --- | --- |
