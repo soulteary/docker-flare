@@ -1,3 +1,5 @@
+![Flare banner: a colorful squirrel holding an acorn in an oil-painted landscape](.github/flare-banner.jpg)
+
 # Flare ✨
 
 [![CodeQL](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml) [![Security Scan](https://github.com/soulteary/flare/actions/workflows/scan.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/scan.yml) [![Release](https://github.com/soulteary/flare/actions/workflows/release.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/release.yml) ![Go Report Card](https://goreportcard.com/badge/github.com/soulteary/flare) [![Docker Image](https://img.shields.io/docker/pulls/soulteary/flare.svg)](https://hub.docker.com/r/soulteary/flare)
