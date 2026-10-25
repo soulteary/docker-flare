@@ -22,6 +22,6 @@ Nginx Proxy Manager 使用独立域名、HTTP 上游 flare:5005，不配置 `/fl
 Traefik 可参考[现有示例](../example/traefik/docker-compose.yml)，按实际网络和证书解析器调整。
 代理不要缓存私有 HTML、设置或编辑文档；允许 8 MiB 导入所需的请求体和超时。
 
-用新浏览器验证未登录访问、HTTPS 登录、Secure Cookie、编辑保存及退出。开发版搜索
+用新浏览器验证未登录访问、HTTPS 登录、Secure Cookie、编辑保存及退出。0.6.5 搜索
 设置若提示请求拒绝，检查 Host/端口和表单是否在服务重启前打开，不要先关闭安全保护。
 动态地址占位符使用应用所见的请求信息；后端 HTTP 与外部 HTTPS 是不同层级。
