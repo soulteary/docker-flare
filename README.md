@@ -48,17 +48,17 @@ cd docker-flare
 ```bash
 # 可以使用最新镜像
 docker pull soulteary/flare
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare
+docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
 docker pull soulteary/flare:0.6.3
-docker run --rm -it -p 5005:5005 -v `pwd`/app:/app soulteary/flare:0.6.3
+docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v `pwd`/app:/app soulteary/flare:0.6.3
 ```
 
 也可以使用 GitHub Container Registry，无需登录即可拉取：
 
 ```bash
 docker pull ghcr.io/soulteary/flare:0.6.3
-docker run --rm -it -p 5005:5005 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.3
+docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.3
 ```
 
 Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.3` 固定版本和 `latest` 标签。
@@ -70,6 +70,8 @@ docker compose up -d flare
 ```
 
 如果你是 Traefik 用户，可以参考 [Traefik 部署示例](./example/traefik/docker-compose.yml)。
+
+以上 Docker 命令和本仓库的 Compose 示例均使用 `local` 日志驱动，单个日志文件达到 `10m` 后轮转，最多保留 3 个日志文件。使用 `docker logs` 仍可查看日志。兼容 `json-file` 的配置、访问日志模式及现有部署的更新步骤见[日志配置与容量说明](./docs/logging.md)。
 
 不论是哪一种方式，在命令执行完毕之后，默认情况下，我们访问浏览器的 `5005` 端口，就能看到下面的界面啦：
 
@@ -83,15 +85,17 @@ docker compose up -d flare
 
 如果反向代理终止 HTTPS、再以 HTTP 连接 Flare，请为服务设置 `FLARE_COOKIE_SECURE=true`，并始终通过 HTTPS 访问。普通 HTTP 部署无需开启该选项。
 
-默认的 `docker-compose.yml` 使用 `soulteary/flare:latest`。在现有部署目录中，拉取新镜像并重建服务：
+默认的 `docker-compose.yml` 使用 `soulteary/flare:latest`。先备份现有 `./app` 数据，并确认继续使用原来的 `./app:/app` 挂载；若使用命名卷，请保留原卷名和 Compose 项目名。在原部署目录中，拉取新镜像并重建同一个服务：
 
 ```bash
 docker compose pull flare
-docker compose up -d flare
+docker compose up -d --force-recreate flare
 docker compose exec flare flare --version
 ```
 
-需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.3`，再执行以上命令。升级会保留挂载的 `./app` 配置目录；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。
+需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.3`，再执行以上命令。重建会保留原来的数据挂载。日志驱动、轮转选项和 Compose 环境变量需要重建容器才生效；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。如何核对挂载及容器实际日志配置，见[日志配置与容量说明](./docs/logging.md#更新现有部署)。
+
+Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 开关需要包含该功能的镜像；源码合并或拉取当前 `latest` 均不代表尚未发布的功能已经可用，请先检查发布说明或镜像的 `flare --help`。
 
 使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.3`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
 
@@ -145,6 +149,7 @@ docker compose exec flare flare --version
 ## 进阶文档
 
 - [自定义启动参数](./docs/advanced-startup.md)
+- [日志配置与 Docker 日志容量](./docs/logging.md)
 - [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
 - [如何挑选和使用图标](./docs/material-design-icons.md)
 - [日期、时间与时区](https://github.com/soulteary/flare/blob/0.6.3/docs/clock.md)

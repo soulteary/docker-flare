@@ -4,6 +4,11 @@ services:
   flare:
     image: soulteary/flare
     restart: always
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "3"
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
     command: flare --disable_login=0 --visibility=private
