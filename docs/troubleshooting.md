@@ -1,0 +1,21 @@
+# 故障排查
+
+反馈请提供版本／commit、镜像 digest、CPU 架构、系统和浏览器版本、退出码、相关日志
+及脱敏配置。不要公开密码、签名密钥、Cookie 或完整私有书签文件。
+
+| 问题 | 首先检查 |
+| --- | --- |
+| 首页仍可匿名访问 | false + PRIVATE 组合；无痕窗口；不要填 VISIBILITY=0 |
+| 正确密码又回登录页 | 升级 0.6.0/0.6.1；Secure Cookie 必须通过 HTTPS；保留签名密钥 |
+| K8s FLARE_PORT 为 tcp://… | 显式数字端口，或 `enableServiceLinks: false` 禁止 Service 环境注入 |
+| / 正常而 /flare/ 失败 | 子路径尚不完整支持，使用独立域名根路径 |
+| 书签不显示 | YAML 和日志、筛选和分类、浏览器扩展拦截；先别覆盖保存 |
+| qB 等单站 Unauthorized | 比较直链和编码、query/fragment 及目标 Referer 策略 |
+| 天气不工作 | 离线开关、城市和数据源范围；时区与天气城市独立 |
+| 升级后仍旧界面 | 确认容器版本/digest、重建、保留未保存数据后刷新缓存 |
+| 编辑器 409 | 先导出草稿，再重新载入检查；没有自动合并 |
+| 恢复未完成 | 停止写入，按服务端明确路径保留并恢复一致的两文件 |
+| 树莓派反复退出 | 提供平台/digest、退出码、日志和内存限制；不能用交叉编译代替真机验证 |
+
+真机 Safari/Via、软键盘、安全区和系统字号检查见[设备验收表](https://github.com/soulteary/flare/blob/main/docs/mobile-device-acceptance.md)。
+未测项目保持未测，不从 Chromium 触屏模拟推断通过。

@@ -1,0 +1,39 @@
+# 配置参考与版本边界
+
+稳定版为 **0.6.4**；主分支文档还包含尚未发布的新搜索和编辑器。稳定部署请阅读对应
+版本文档，核对运行中的版本和镜像 digest。源码功能合并后不会自动更新镜像。
+
+配置优先级：命令行 > 应用工作目录 `.env` > 容器环境变量 > 默认值。Compose 项目
+`.env` 仅用于插值，不会自动传入容器；使用服务的 `environment` 或 `env_file`。
+镜像、环境变量、command 和日志驱动变化都需要重建容器，restart 不会替换镜像。
+
+| 环境变量 | CLI | 默认值／合法值 |
+| --- | --- | --- |
+| `FLARE_PORT` | `--port` | `5005`；整数 1–65535 |
+| `FLARE_DISABLE_LOGIN` | `--disable_login` | `true`；设为 false 才启用登录 |
+| `FLARE_VISIBILITY` | `--visibility` | `DEFAULT` 或 `PRIVATE`；不可填 0/1 |
+| `FLARE_USER` / `FLARE_PASS` | — | 默认用户名 flare；密码缺省时生成并输出启动日志 |
+| `FLARE_EDITOR` | `--enable_editor` | true |
+| `FLARE_GUIDE` | `--guide` | true |
+| `FLARE_OFFLINE` | `--offline` | false；停用服务端天气和区域查询 |
+| `FLARE_MINI_REQUEST` | `--mini_request` | false；内联 SVG，减少请求但增加 HTML 体积 |
+| `FLARE_DEBUG` | — | 进程环境设为 on 开启应用 DEBUG 日志；不切换开发资源模式 |
+| `FLARE_ACCESS_LOG` | `--access_log` | errors；可选 all/off；0.6.4 起 |
+| `FLARE_COOKIE_SECURE` | `--cookie_secure` | false；HTTPS 反代终止 TLS 时设 true |
+| `FLARE_COOKIE_SECRET` | `--cookie_secret` | 自动初始化安全密钥；自设至少 32 字节 |
+| `FLARE_COOKIE_NAME` | `--cookie_name` | flare |
+| `FLARE_DEPRECATED_NOTICE` | `--enable_notice` | true |
+| `FLARE_DISABLE_CSP` | `--disable_csp` | false；不建议关闭 |
+
+布尔值建议写字符串 `"true"`/`"false"`。`FLARE_DEBUG=on` 在正式版也可开启应用 DEBUG 日志，但不会开启开发资源模式。
+启动参数修改后重启进程；外部直接修改 YAML 后也需重启，界面保存则用于后续请求。
+完整字段和开发分支行为见[源码配置参考](https://github.com/soulteary/flare/blob/main/docs/configuration.md)。
+
+| 目标 | DISABLE_LOGIN | VISIBILITY |
+| --- | --- | --- |
+| 信任内网、无需登录 | true | DEFAULT |
+| 首页公开、编辑需登录 | false | DEFAULT |
+| 首页和编辑均需登录 | false | PRIVATE |
+
+隐藏设置按钮只改变外观；链接编码不是加密；分类 Tab 不是分组权限。外观 Footer 是
+管理员配置的 HTML，应只由受信任的人编辑。确认访问控制时请使用未登录的新浏览器。
