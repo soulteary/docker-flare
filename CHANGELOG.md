@@ -4,6 +4,7 @@
 
 ## 目录
 
+* [0.6.4](#064---2026-10-25)
 * [0.6.3](#063---2026-10-25)
 * [0.6.2](#062---2026-10-25)
 * [0.6.1](#061---2026-10-25)
@@ -27,6 +28,20 @@
 * [0.2.1](#021---2022-02-07)
 * [0.2.0](#020---2022-01-30)
 * [0.1.0](#010---2022-01-27)
+
+# 0.6.4 - 2026-10-25
+
+同步 [Flare 0.6.4](https://github.com/soulteary/flare/releases/tag/0.6.4)，本仓库沿用 `v` 前缀，对应版本标签为 `v0.6.4`。应用镜像和二进制由源码仓库发布，本仓库同步部署文档和发行记录。
+
+- [修正] 改善移动页面布局和触摸编辑，覆盖分类选择、书签字段保留与保存失败后的重试。详见 [flare #126](https://github.com/soulteary/flare/pull/126)。
+- [维护] HTTP 服务由 Echo 迁移为原生 `Fiber v3.6.1`，保留原有会话、资源缓存和 Range 请求行为，完善错误响应、请求状态和表单处理；归档性能比较、跳转路径优化和复现方法。详见 [flare #128](https://github.com/soulteary/flare/pull/128) 和[性能记录](https://github.com/soulteary/flare/blob/0.6.4/docs/performance.md)。
+- [维护] 内存文件系统依赖由 `memfs-kit v1.1.0` 更新至 `v1.1.1`。
+- [优化] HTTP 访问日志默认只记录返回错误或状态为 4xx、5xx 的请求；新增 `FLARE_ACCESS_LOG=errors|all|off` 与 `--access_log`，保留应用启动信息和异常日志。详见 [flare #125](https://github.com/soulteary/flare/issues/125) 和 [flare #130](https://github.com/soulteary/flare/pull/130)。
+- [部署] 四份 Compose 示例和 README 的 Docker 启动命令默认使用 `local` 日志驱动，单个日志文件上限 `10m`，最多保留 3 个文件；补充兼容 `json-file` 的配置和现有部署的重建、检查步骤。详见 [docker-flare #189](https://github.com/soulteary/docker-flare/pull/189) 和[日志配置与容量说明](./docs/logging.md)。
+- [外观] 更新圆形松鼠网站图标和 README 横幅。详见 [flare #127](https://github.com/soulteary/flare/pull/127)、[flare #129](https://github.com/soulteary/flare/pull/129) 和 [docker-flare #188](https://github.com/soulteary/docker-flare/pull/188)。
+- [文档] 固定版本镜像、帮助命令和源码文档链接同步至 0.6.4，明确访问日志开关的最低版本和升级方式。
+
+升级注意：无需迁移现有书签和设置。先备份并保留原有数据挂载，拉取镜像后重建容器；仅重启不会应用新镜像、日志驱动或 Compose 环境变量。默认成功访问不再产生访问日志，需要保留普通访问记录时设置 `FLARE_ACCESS_LOG=all`。Docker 轮转配置可用于旧镜像，访问日志开关从 0.6.4 起可用。0.6.2 的 HTTPS 反代 Cookie、书签备份持久化要求，以及 0.6.3 的时钟默认行为继续适用。
 
 # 0.6.3 - 2026-10-25
 
