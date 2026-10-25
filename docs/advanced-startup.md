@@ -24,37 +24,21 @@
 
 环境变量使用示例： `FLARE_OFFLINE=0` 或 `FLARE_OFFLINE=false`
 
-完全的环境变量列表，可以[参考这里](https://github.com/soulteary/flare/blob/main/model/cmd.go)。
+完整的环境变量列表，可以[参考 0.6.1 的配置定义](https://github.com/soulteary/flare/blob/0.6.1/config/model/cmd.go)。
 
 
 ## 命令行参数
 
+使用镜像内的帮助命令查看当前版本支持的完整参数：
+
+```bash
+docker run --rm soulteary/flare:0.6.1 flare --help
 ```
-docker run --rm -it -p 5005:5005 soulteary/flare:0.5.1 flare
-找不到配置文件config，创建默认配置。
-[22:49:49.562] INFO: Flare - 🏂 Challenge all bookmarking apps and websites directories, Aim to Be a best performance monster.
-[11:23:23.622] INFO: 程序信息： {"GOGS/ARCH":"linux/arm64","commit":"4D2A2143715A30FC1646DE067847322A8C6F91BF","date":"2024-01-06T03:24:10Z","version":"0.5.1"}
-[22:49:49.562] INFO: 程序服务端口 {"port":5005}
-[22:49:49.562] INFO: 页面请求合并 {"mini_request":false}
-[22:49:49.562] INFO: 启用离线模式 {"offline":false}
-[22:49:49.562] INFO: 已禁用登陆模式，用户可直接调整应用设置。
-[22:49:49.563] INFO: 在线编辑模块启用，可以访问 /editor 来进行数据编辑。
-[22:49:49.563] INFO: 向导模块启用，可以访问 /guide 来获取程序使用帮助。
-[22:49:49.563] INFO: 程序已启动完毕 🚀
 
+例如，使用离线模式启动 0.6.1：
 
-支持命令：
-  -p, --port int            指定监听端口 (default 5005)
-  -g, --guide               启用应用向导 (default true)
-  -s, --visibility string   调整网站整体可见性 (default "DEFAULT")
-  -m, --mini_request        使用请求最小化模式
-  -o, --offline             启用离线模式
-  -l, --disable_login       禁用账号登陆 (default true)
-  -n, --enable_notice       启用废弃日志警告 (default true)
-  -e, --enable_editor       启用编辑器 (default true)
-  -c, --disable_csp         禁用CSP
-  -v, --version             显示应用版本号
-  -h, --help                显示帮助
+```bash
+docker run --rm -it -p 5005:5005 soulteary/flare:0.6.1 flare --offline=1
 ```
 
 ## 功能说明

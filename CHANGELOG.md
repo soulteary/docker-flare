@@ -4,6 +4,7 @@
 
 ## 目录
 
+* [0.6.1](#061---2026-10-25)
 * [0.5.1](#050---2024-01-06)
 * [0.5.0](#050---2024-01-05)
 * [0.4.3](#043---2023-12-07)
@@ -24,6 +25,17 @@
 * [0.2.1](#021---2022-02-07)
 * [0.2.0](#020---2022-01-30)
 * [0.1.0](#010---2022-01-27)
+
+# 0.6.1 - 2026-10-25
+
+同步 [Flare 0.6.1](https://github.com/soulteary/flare/releases/tag/0.6.1)，本仓库的版本标签为 `v0.6.1`。
+
+- [修正] 修复 0.6.0 默认模式下内置 MDI 图标请求返回 500 的问题。Echo v5 的静态文件服务要求文件支持定位读取，原内存文件实现不满足该接口；现在通过独立的可定位读取器提供生成的 SVG。https://github.com/soulteary/docker-flare/issues/184 https://github.com/soulteary/flare/pull/117
+- [修正] 图标使用与内容对应的 ETag，缺失资源返回 404；避免错误响应被长期缓存，以及共享 ETag 将不存在的资源错误地变成 304。
+- [优化] 完善图标缓存的并发访问，以及 GET、HEAD、Range、条件请求和主题切换的回归验证；请求最小化模式继续支持内联 SVG。
+- [文档] 更新固定版本示例和升级步骤。默认 Compose 配置继续使用 `soulteary/flare:latest`；更新现有服务需要执行 `docker compose pull flare` 和 `docker compose up -d flare`。
+
+更早版本的应用变更请参考 [0.5.2](https://github.com/soulteary/flare/releases/tag/0.5.2) 和 [0.6.0](https://github.com/soulteary/flare/releases/tag/0.6.0) 的发布说明。
 
 # 0.5.1 - 2024-01-06
 
