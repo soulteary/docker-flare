@@ -9,11 +9,9 @@ flare 默认会启动免登陆模式，方便在 HomeLab 或本地使用的小�
 我们可以通过在环境变量中设置 `FLARE_USER` 和 `FLARE_PASS` 来指定 flare 的账号和密码，下面是一个容器编排文件示例：
 
 ```yaml
-version: '3.6'
-
 services:
   flare:
-    image: soulteary/flare
+    image: soulteary/flare:0.6.4
     restart: always
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
@@ -41,3 +39,23 @@ services:
 ```bash
 docker compose logs flare
 ```
+
+
+## 首页也需要登录
+
+上述示例保护设置和编辑操作，默认首页仍公开。如果首页也要登录可见，在服务中增加：
+
+```yaml
+environment:
+  FLARE_DISABLE_LOGIN: "false"
+  FLARE_VISIBILITY: "PRIVATE"
+  FLARE_USER: "your_user"
+  FLARE_PASS: "replace_with_a_strong_password"
+```
+
+将这些字段合并进现有的唯一 `environment` 块，不要在同一服务重复声明它。
+TLS 由反向代理终止时再添加 `FLARE_COOKIE_SECURE: "true"`。重建服务后，用无痕窗口
+验证首页和编辑器都无法匿名打开。`PRIVATE` 不能在禁用登录时提供身份验证。
+
+自动保存的 Cookie 签名密钥位于应用数据目录的 `.flare-cookie-secret`，备份和迁移时
+一并保留；替换密钥会使现有登录失效。账号和部署环境不包含在书签导出中。

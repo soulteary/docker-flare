@@ -86,7 +86,7 @@ environment:
 - `all`：记录普通请求；成功的健康检查、静态资源和跳转请求仍按原有规则省略。
 - `off`：关闭 HTTP 访问日志。
 
-例如，添加 `--access_log=all` 或设置 `FLARE_ACCESS_LOG=all` 可恢复普通访问记录。启动信息和应用自身日志不受此开关影响；`FLARE_DEBUG=on` 用于启用应用 DEBUG 日志，不会自动开启全部访问日志。
+例如，添加 `--access_log=all` 或设置 `FLARE_ACCESS_LOG=all` 可恢复普通访问记录。启动信息和应用自身日志不受此开关影响；`FLARE_DEBUG=on` 独立开启应用 DEBUG 日志，不会切换开发资源模式，也不会自动开启全部访问日志；需要普通访问记录时使用 `FLARE_ACCESS_LOG=all`。
 
 配置优先级、Compose 环境变量、具体过滤规则和 Docker 日志轮转见[日志配置与 Docker 日志容量](./logging.md)。修改 Compose 配置后需要重建容器。
 
@@ -98,7 +98,7 @@ environment:
 
 ### 离线模式：`offline`
 
-当这个参数开启之后，flare 所有依赖公网的功能将被停用。
+当这个参数开启之后，Flare 停用服务端天气和区域查询。它不阻止浏览器加载用户配置的远程图标，也不阻止打开外部书签；需要完全离线时应使用内置图标并自行约束浏览器网络。
 
 目前 flare 仅会调用 issue[#4](https://github.com/soulteary/docker-flare/issues/4) 中提到的 `https://wis.qq.com/weather/common` 接口获取天气数据，和 IPIP 的地理位置接口获取地理信息，开启此参数后，天气将无法获取。
 
@@ -107,3 +107,10 @@ environment:
 ### 指定端口：`port`
 
 这个参数用于自定义服务端口，使用 `docker-flare` 的小伙伴可以忽略。
+
+
+## 私有访问与完整参考
+
+首页需要登录时，必须同时设置 `FLARE_DISABLE_LOGIN=false` 与
+`FLARE_VISIBILITY=PRIVATE`。`0` 不是可见性的合法枚举，隐藏设置按钮也不是权限控制。
+环境变量、CLI、默认值、生效方式以及稳定版／开发分支区别见[配置参考](configuration.md)。

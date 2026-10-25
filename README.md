@@ -13,15 +13,20 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
-当前应用版本为 [Flare 0.6.4](https://github.com/soulteary/flare/releases/tag/0.6.4)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+当前已发布稳定版为 [Flare 0.6.4](https://github.com/soulteary/flare/releases/tag/0.6.4)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+
+**版本边界：** 源码 `main` 的新搜索、列表编辑器、Tab／折叠和列数设置尚不包含在
+0.6.4 镜像中。合并 PR 不代表发布镜像；请核对实际 `flare --version` 和 digest。
+开发分支功能见[文档索引](https://github.com/soulteary/flare/blob/main/docs/README.md)。
 
 支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载过万，期待你的反馈 :)
 
 支持 x86 以及常见的 ARM (ARM32v6、ARM32v7、ARM64v8)设备，应用资源消耗非常低：
 
-- CPU: < 1%
-- MEM: < 30M
-- Docker Image: < 10M
+这些旧版截图中的资源数字不是 0.6.4 或主分支的容量保证。CPU、RSS 和镜像大小
+取决于版本、平台、书签数量、天气、日志及连接并发；镜像压缩大小与容器常驻内存也不同。
+请使用[性能测量方法](https://github.com/soulteary/flare/blob/main/docs/baseline-metrics.md)
+记录具体数据，避免将空闲 CPU、分配量和 RSS 混为一个指标。
 
 <img src="screenshots/docker-pulls.png" width="90%"/>
 <img src="screenshots/docker-image-size.png" width="90%"/>
@@ -152,6 +157,10 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 
 ## 进阶文档
 
+- [配置参考、默认值和访问模式](./docs/configuration.md)
+- [备份与完整恢复](./docs/backup-restore.md)
+- [反向代理和子路径边界](./docs/reverse-proxy.md)
+- [故障排查与反馈信息](./docs/troubleshooting.md)
 - [自定义启动参数](./docs/advanced-startup.md)
 - [日志配置与 Docker 日志容量](./docs/logging.md)
 - [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
