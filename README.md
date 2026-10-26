@@ -13,18 +13,18 @@
 
 无任何数据库依赖，应用数据完全开放透明，100% 属于用户自己。
 
-当前已发布稳定版为 [Flare 0.6.5](https://github.com/soulteary/flare/releases/tag/0.6.5)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
+当前已发布稳定版为 [Flare 0.6.6](https://github.com/soulteary/flare/releases/tag/0.6.6)。本仓库提供 Docker 部署示例和使用文档，程序源码及构建发布位于 [soulteary/flare](https://github.com/soulteary/flare)。
 
 **版本边界：** 新搜索、列表／表单／批量编辑器、Tab／折叠和列数设置已包含在
-0.6.5 镜像中；0.6.4 不包含这些功能。请核对实际 `flare --version` 和 digest。
-使用说明见[0.6.5 文档索引](https://github.com/soulteary/flare/blob/0.6.5/docs/README.md)。
+0.6.5 起的镜像中；0.6.6 进一步完善搜索模式、设置保存、天气地区选择和图标兼容。0.6.4 不包含这些功能。请核对实际 `flare --version` 和 digest。
+使用说明见[0.6.6 文档索引](https://github.com/soulteary/flare/blob/0.6.6/docs/README.md)。
 Safari、Via、Android 和 iPad 的真机兼容性仍未验证，Chromium 自动化不能替代真机结果。
 
-支持在线编辑，内置 Material Design Icons 6k+ 图标，目前累计下载过万，期待你的反馈 :)
+支持在线编辑，内置 Material Design Icons 7.4.47 及旧版兼容图标，目前累计下载过万，期待你的反馈 :)
 
 支持 x86 以及常见的 ARM (ARM32v6、ARM32v7、ARM64v8)设备，应用资源消耗非常低：
 
-这些旧版截图中的资源数字不是 0.6.5 或主分支的容量保证。CPU、RSS 和镜像大小
+这些旧版截图中的资源数字不是 0.6.6 或主分支的容量保证。CPU、RSS 和镜像大小
 取决于版本、平台、书签数量、天气、日志及连接并发；镜像压缩大小与容器常驻内存也不同。
 请使用[性能测量方法](https://github.com/soulteary/flare/blob/main/docs/baseline-metrics.md)
 记录具体数据，避免将空闲 CPU、分配量和 RSS 混为一个指标。
@@ -56,18 +56,18 @@ cd docker-flare
 docker pull soulteary/flare
 docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v `pwd`/app:/app soulteary/flare
 # 也可以追求明确，使用固定版本
-docker pull soulteary/flare:0.6.5
-docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v `pwd`/app:/app soulteary/flare:0.6.5
+docker pull soulteary/flare:0.6.6
+docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v `pwd`/app:/app soulteary/flare:0.6.6
 ```
 
 也可以使用 GitHub Container Registry，无需登录即可拉取：
 
 ```bash
-docker pull ghcr.io/soulteary/flare:0.6.5
-docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.5
+docker pull ghcr.io/soulteary/flare:0.6.6
+docker run --rm -it -p 5005:5005 --log-driver local --log-opt max-size=10m --log-opt max-file=3 -v "$(pwd)/app:/app" ghcr.io/soulteary/flare:0.6.6
 ```
 
-Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.5` 固定版本和 `latest` 标签。
+Docker Hub 和 GHCR 提供相同 digest 的多架构镜像，均支持 `linux/amd64`、`linux/arm64`、`linux/arm/v7` 和 `linux/arm/v6`。两个镜像源都提供 `0.6.6` 固定版本和 `latest` 标签。
 
 如果你习惯使用 Docker Compose，只需要执行：
 
@@ -85,6 +85,8 @@ docker compose up -d flare
 
 ### 升级现有部署
 
+0.6.6 新增明确的搜索模式和天气地区选择，保护设置升级与并发保存，更新 MDI 图标并保留 19 个旧图标，调整主题 favicon 和手机／平板布局。搜索 `!keyword` 快捷语法已移除；天气空地区需手动选择，旧地区仅在唯一匹配时自动迁移。升级前备份完整数据目录（含隐藏目录）、Compose 和外部密钥；回滚时恢复升级前的完整备份，不能只换旧镜像。详见 [0.6.6 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.6)、[配置与迁移](docs/configuration.md)和[备份恢复](docs/backup-restore.md)。
+
 0.6.5 新增列表／表单／批量编辑器、草稿恢复、搜索引擎和混合搜索、分类 Tab／折叠及布局控制；修正动态地址、配置解析、保存恢复、天气刷新与资源缓存。升级前先停止写入并备份完整数据目录、Compose 和外部密钥。支持的链接协议现在会被校验，未支持的协议保留在数据中但显示为 `#`。详见 [0.6.5 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.5) 和[备份恢复](docs/backup-restore.md)。
 
 0.6.4 改善移动页面布局和触摸编辑，将 HTTP 服务迁移到原生 `Fiber v3.6.1`，并将内存文件系统依赖更新到 `memfs-kit v1.1.1`。HTTP 访问日志默认只记录失败请求，可通过 `FLARE_ACCESS_LOG=errors|all|off` 或 `--access_log` 调整；启动信息和应用日志继续保留。本仓库的部署示例同步启用 Docker 日志轮转，并更新网站图标和 README 横幅。详情见 [变更记录](./CHANGELOG.md) 和 [Flare 0.6.4 发布说明](https://github.com/soulteary/flare/releases/tag/0.6.4)。
@@ -95,7 +97,7 @@ docker compose up -d flare
 
 如果反向代理终止 HTTPS、再以 HTTP 连接 Flare，请为服务设置 `FLARE_COOKIE_SECURE=true`，并始终通过 HTTPS 访问。普通 HTTP 部署无需开启该选项。
 
-默认的 `docker-compose.yml` 使用 `soulteary/flare:latest`。先备份现有 `./app` 数据，并确认继续使用原来的 `./app:/app` 挂载；若使用命名卷，请保留原卷名和 Compose 项目名。在原部署目录中，拉取新镜像并重建同一个服务：
+本仓库的 Compose 示例固定使用 `soulteary/flare:0.6.6`，升级版本时需显式修改 `image`；需要持续跟随稳定版可改为 `soulteary/flare:latest`。先备份现有 `./app` 数据，并确认继续使用原来的 `./app:/app` 挂载；若使用命名卷，请保留原卷名和 Compose 项目名。在原部署目录中，拉取新镜像并重建同一个服务：
 
 ```bash
 docker compose pull flare
@@ -103,11 +105,11 @@ docker compose up -d --force-recreate flare
 docker compose exec flare flare --version
 ```
 
-需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.5`，再执行以上命令。重建会保留原来的数据挂载。日志驱动、轮转选项和 Compose 环境变量需要重建容器才生效；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。如何核对挂载及容器实际日志配置，见[日志配置与容量说明](./docs/logging.md#更新现有部署)。
+需要固定版本时，将 `docker-compose.yml` 中的 `image` 改为 `soulteary/flare:0.6.6`，再执行以上命令。重建会保留原来的数据挂载。日志驱动、轮转选项和 Compose 环境变量需要重建容器才生效；发布新镜像或仅执行 `docker compose restart` 都不会自动替换正在运行的旧容器。如何核对挂载及容器实际日志配置，见[日志配置与容量说明](./docs/logging.md#更新现有部署)。
 
 Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--access_log` 从 0.6.4 起可用，默认值为 `errors`；需要记录普通访问时，在服务的 `environment` 中加入 `FLARE_ACCESS_LOG=all` 后重建容器。使用旧镜像前请检查版本，或运行镜像的 `flare --help` 确认支持的参数。
 
-使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.5`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
+使用 GHCR 时，将同一个 `image` 字段改为 `ghcr.io/soulteary/flare:0.6.6`（固定版本）或 `ghcr.io/soulteary/flare:latest`（跟随最新稳定版），其余配置和升级命令相同。
 
 如果升级后浏览器仍显示旧的图标加载结果，可强制刷新页面或清除该站点缓存。此前为绕过问题而启用的 `FLARE_MINI_REQUEST` 可以按需保留，0.6.1 起默认模式也已恢复正常。
 
@@ -119,7 +121,7 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 
 实时显示使用**访问设备的系统时间**，再换算到所选时区；即使选择跟随服务器，也只是跟随服务器的时区。服务器或指定时区的静态显示使用服务器时间，设备时区的静态显示只在初始化时读取一次设备时间。设备时间不准会影响实时显示；此功能不会进行 NTP 校时，也不会请求外部时间接口。
 
-禁用 JavaScript 或浏览器不支持所需时区能力时，页面会保留可读的服务端时间。配置字段、时区优先级与降级行为见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.5/docs/clock.md)。
+禁用 JavaScript 或浏览器不支持所需时区能力时，页面会保留可读的服务端时间。配置字段、时区优先级与降级行为见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.6/docs/clock.md)。
 
 ### 程序使用向导
 
@@ -130,7 +132,7 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 
 ## 程序在线编辑页面
 
-为了满足随时随地编辑的需求，程序新增了“在线编辑”的页面。
+为了满足随时随地编辑的需求，0.6.5 起提供列表／表单／批量编辑、图标选择和草稿恢复。下面保留的截图展示早期界面，当前使用方法见[编辑器说明](https://github.com/soulteary/flare/blob/0.6.6/docs/editor.md)。
 
 ![Flare Editor](./screenshots/editor-beta.png)
 
@@ -138,7 +140,7 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 
 0.6.2 起，可在编辑器中选择「导入 / 导出浏览器书签与 Flare YAML」，预览后合并导入 Chrome、Edge、Firefox 等浏览器导出的书签 HTML，或 Flare YAML；也可导出 HTML / YAML 和下载最近一次导入前备份。
 
-导入支持 UTF-8、最大 8 MiB 的文件。备份位于工作目录下的 `.flare-bookmark-backups/`；使用默认 Docker / Compose 部署时，容器中的路径是 `/app/.flare-bookmark-backups/`，对应宿主机的 `./app/.flare-bookmark-backups/`，现有的 `./app:/app` 挂载已包含该目录。自定义工作目录时，请一并持久化其中的备份目录。YAML 合并导入不等于完整配置恢复。详见 [书签迁移说明](https://github.com/soulteary/flare/blob/0.6.5/docs/bookmark-transfer.md)。
+导入支持 UTF-8、最大 8 MiB 的文件。备份位于工作目录下的 `.flare-bookmark-backups/`；使用默认 Docker / Compose 部署时，容器中的路径是 `/app/.flare-bookmark-backups/`，对应宿主机的 `./app/.flare-bookmark-backups/`，现有的 `./app:/app` 挂载已包含该目录。自定义工作目录时，请一并持久化其中的备份目录。YAML 合并导入不等于完整配置恢复。详见 [书签迁移说明](https://github.com/soulteary/flare/blob/0.6.6/docs/bookmark-transfer.md)。
 
 ## 程序帮助页面
 
@@ -168,7 +170,7 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 - [日志配置与 Docker 日志容量](./docs/logging.md)
 - [关闭免登陆模式后，如何设置用户账号](./docs/application-account.md)
 - [如何挑选和使用图标](./docs/material-design-icons.md)
-- [日期、时间与时区](https://github.com/soulteary/flare/blob/0.6.5/docs/clock.md)
+- [日期、时间与时区](https://github.com/soulteary/flare/blob/0.6.6/docs/clock.md)
 - [如何和 Traefik 一起使用](https://github.com/soulteary/traefik-example)
 
 ## 相比较 Flame
@@ -183,7 +185,7 @@ Docker 日志轮转可直接用于现有镜像。`FLARE_ACCESS_LOG` 和 `--acces
 
 ## 关于内置图标
 
-程序内置了目前 [materialdesignicons.com](https://materialdesignicons.com/) 中所有的 Material Design Icons，你可以让你的每一个书签都拥有风格统一、高质量的矢量图标。
+0.6.6 内置 Material Design Icons 7.4.47 的 7,447 个图标，并保留 19 个旧版图标标识及原 SVG，你可以让你的每一个书签都拥有风格统一、高质量的矢量图标。
 
 ![](./screenshots/icon-cheat-sheets.png)
 

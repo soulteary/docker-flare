@@ -9,6 +9,7 @@
 | Flare YAML 导出 | 一个导航集合 | 导入是合并，不等于整站覆盖恢复 |
 | `.flare-bookmark-backups/` | 导入前数据 | 不覆盖所有日常编辑和 config.yml |
 | `.flare-editor-recovery/save-*` | 0.6.5 编辑器保存前的原始两文件 | 仅按明确恢复路径恢复，不是新草稿 |
+| `.flare-search-backups/` | 0.6.6 搜索设置变更前的完整配置及 manifest | 首次升级备份永久保留，latest 仅保留上一次；不替代整站备份 |
 | JSON 编辑草稿 | 0.6.5 未保存编辑数据 | 载入后检查并显式保存，不是浏览器导入文件 |
 
 默认 `./app:/app` 挂载已包含上述目录。Cookie 密钥也要保留，否则已有会话失效。
@@ -23,4 +24,9 @@ docker compose start flare
 
 恢复前保存现有目录，停止所有写入者，恢复原属主和权限，再启动并验证导航内容。
 命名卷应按原卷名备份恢复，不要另建项目后误认为旧数据消失。
-详细的编辑恢复步骤见[恢复指南](https://github.com/soulteary/flare/blob/0.6.5/docs/editor-recovery.md)。
+详细的编辑恢复步骤见[恢复指南](https://github.com/soulteary/flare/blob/0.6.6/docs/editor-recovery.md)。
+
+0.6.6 的搜索备份包含 `first-upgrade-to-<target-version>.bak`、`latest.bak` 和
+`manifest.json`，可能包含私密配置，请勿公开。读取页面或未改变搜索设置不会生成备份。
+回滚时停止新版本及其他写入者，恢复升级前的完整数据目录和外部配置，再使用旧镜像启动；
+不要依赖旧程序理解新版本已经写入的设置。详见[搜索升级保护](https://github.com/soulteary/flare/blob/0.6.6/docs/search-hybrid.md)。
