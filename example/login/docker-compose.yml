@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   flare:
-    image: soulteary/flare
+    image: soulteary/flare:0.6.6
     restart: always
     logging:
       driver: local

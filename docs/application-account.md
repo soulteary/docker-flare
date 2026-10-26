@@ -11,7 +11,7 @@ flare 默认会启动免登陆模式，方便在 HomeLab 或本地使用的小�
 ```yaml
 services:
   flare:
-    image: soulteary/flare:0.6.5
+    image: soulteary/flare:0.6.6
     restart: always
     # 默认无需添加任何参数，如有特殊需求
     # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
