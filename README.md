@@ -2,7 +2,7 @@
 
 # Flare ✨
 
-[![CodeQL](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml) [![Security Scan](https://github.com/soulteary/flare/actions/workflows/scan.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/scan.yml) [![Release](https://github.com/soulteary/flare/actions/workflows/release.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/release.yml) ![Go Report Card](https://goreportcard.com/badge/github.com/soulteary/flare) [![Docker Image](https://img.shields.io/docker/pulls/soulteary/flare.svg)](https://hub.docker.com/r/soulteary/flare)
+[![CodeQL](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/codeql-analysis.yml) [![Security Scan](https://github.com/soulteary/flare/actions/workflows/scan.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/scan.yml) [![Release](https://github.com/soulteary/flare/actions/workflows/release.yml/badge.svg)](https://github.com/soulteary/flare/actions/workflows/release.yml) [![Go Report Card](https://raw.githubusercontent.com/soulteary/flare/main/.github/goreportcard.svg)](https://github.com/soulteary/flare/blob/main/.github/goreportcard-report.md) [![Docker Image](https://img.shields.io/docker/pulls/soulteary/flare.svg)](https://hub.docker.com/r/soulteary/flare)
 
 
 如果你觉得这个项目有帮到你，欢迎点赞✨（star）给予鼓励；如果你希望收到这个项目的更新推送，可以点击关注 👀（watch）并选择适合自己的关注模式（推荐 release）。
