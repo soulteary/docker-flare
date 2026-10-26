@@ -27,7 +27,7 @@ HTTP 访问日志模式         "FLARE_ACCESS_LOG"
 
 环境变量使用示例： `FLARE_OFFLINE=0` 或 `FLARE_OFFLINE=false`
 
-完整的环境变量列表，可以[参考 0.6.6 的配置定义](https://github.com/soulteary/flare/blob/0.6.6/config/model/cmd.go)。
+完整的环境变量列表，可以[参考 0.6.7 的配置定义](https://github.com/soulteary/flare/blob/0.6.7/config/model/cmd.go)。
 
 
 ## 命令行参数
@@ -35,13 +35,13 @@ HTTP 访问日志模式         "FLARE_ACCESS_LOG"
 使用镜像内的帮助命令查看当前版本支持的完整参数：
 
 ```bash
-docker run --rm soulteary/flare:0.6.6 flare --help
+docker run --rm soulteary/flare:0.6.7 flare --help
 ```
 
-例如，使用离线模式启动 0.6.6：
+例如，使用离线模式启动 0.6.7：
 
 ```bash
-docker run --rm -it -p 5005:5005 soulteary/flare:0.6.6 flare --offline=1
+docker run --rm -it -p 5005:5005 soulteary/flare:0.6.7 flare --offline=1
 ```
 
 ## 功能说明
@@ -94,7 +94,7 @@ environment:
 
 0.6.3 起，实时时钟、秒数显示和显示时区在 **设置 → 外观 → 模块设置** 中配置，或通过 `config.yml` 的 `Clock` 配置块调整。未配置时保持跟随服务器时区、包含秒数的静态显示。
 
-容器的 `TZ` 只决定进程本地时区。实时模式使用访问设备的系统时间，再按服务器、访问设备或指定时区换算，不会修改主机时间，也不提供校时。完整字段和示例见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.6/docs/clock.md)。
+容器的 `TZ` 只决定进程本地时区。实时模式使用访问设备的系统时间，再按服务器、访问设备或指定时区换算，不会修改主机时间，也不提供校时。完整字段和示例见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.7/docs/clock.md)。
 
 ### 离线模式：`offline`
 
