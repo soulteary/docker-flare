@@ -30,6 +30,6 @@ Traefik 可参考[现有示例](../example/traefik/docker-compose.yml)，按实�
 
 普通保留原 Host 的根路径反代无需填写全部高级选项。需指定外部 origin 时设置 `FLARE_EXTERNAL_URL=https://flare.example.com`；`FLARE_ALLOWED_HOSTS` 是逗号分隔的主机／端口列表，`FLARE_TRUSTED_PROXIES` 是受信代理 IP/CIDR。只有受信代理提供的来源头会参与判断，勿信任任意公网来源。
 
-Traefik 示例设置了 HTTPS origin 和 Secure Cookie，必须同步修改路由 Host 与外部 URL。HTTPS Cookie 不会在代理配置故障时自动降级；发生来源、CSRF 或认证错误时修正源配置，不要关闭保护。新实例默认私有，需先初始化管理员；已有公开首页部署还需用匿名窗口检查 private 分类／条目不可见。
+Traefik 示例设置了 HTTPS origin 和 Secure Cookie，必须同步修改路由 Host 与外部 URL。HTTPS Cookie 不会在代理配置故障时自动降级；发生来源、CSRF 或认证错误时修正源配置，不要关闭保护。Traefik 示例显式配置全站私有，需先初始化管理员；0.6.9 默认示例免登录，不能据此假定反向代理后自动受保护；已有公开首页部署还需用匿名窗口检查 private 分类／条目不可见。
 
-完整字段与边界见[0.6.8 反向代理指南](https://github.com/soulteary/flare/blob/0.6.8/docs/reverse-proxy.md)。
+完整字段与边界见[0.6.9 反向代理指南](https://github.com/soulteary/flare/blob/0.6.9/docs/reverse-proxy.md)。

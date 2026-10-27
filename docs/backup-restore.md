@@ -25,12 +25,12 @@ docker compose start flare
 
 恢复前保存现有目录，停止所有写入者，恢复原属主和权限，启动前执行 `docker compose run --rm --no-deps flare flare security revoke-all`，成功后再启动并验证导航内容和匿名访问。普通重启不要求撤销会话，完整目录恢复则可能带回历史会话。
 命名卷应按原卷名备份恢复，不要另建项目后误认为旧数据消失。
-详细的编辑恢复步骤见[恢复指南](https://github.com/soulteary/flare/blob/0.6.8/docs/editor-recovery.md)。
+详细的编辑恢复步骤见[恢复指南](https://github.com/soulteary/flare/blob/0.6.9/docs/editor-recovery.md)。
 
 0.6.6 的搜索备份包含 `first-upgrade-to-<target-version>.bak`、`latest.bak` 和
 `manifest.json`，可能包含私密配置，请勿公开。读取页面或未改变搜索设置不会生成备份。
 回滚时停止新版本及其他写入者，恢复升级前的完整数据目录和外部配置，再使用旧镜像启动；
-不要依赖旧程序理解新版本已经写入的设置。详见[搜索升级保护](https://github.com/soulteary/flare/blob/0.6.8/docs/search-hybrid.md)。
+不要依赖旧程序理解新版本已经写入的设置。详见[搜索升级保护](https://github.com/soulteary/flare/blob/0.6.9/docs/search-hybrid.md)。
 
 ## 0.6.8 回滚
 

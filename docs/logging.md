@@ -2,7 +2,7 @@
 
 从 Flare 0.6.4 起，HTTP 访问日志默认只记录错误请求。应用仍将日志输出到标准输出或标准错误，Docker 部署应同时为容器配置日志轮转，避免长期运行时日志持续占用磁盘。
 
-本文中的 `FLARE_ACCESS_LOG` 和 `--access_log` 从 Flare 0.6.4 起可用。可选用 `soulteary/flare:0.6.8`、`ghcr.io/soulteary/flare:0.6.8` 或其他不低于 0.6.4 的已发布版本，并检查 `flare --version`；旧镜像不支持该开关。Docker 日志轮转配置可用于现有镜像。
+本文中的 `FLARE_ACCESS_LOG` 和 `--access_log` 从 Flare 0.6.4 起可用。可选用 `soulteary/flare:0.6.9`、`ghcr.io/soulteary/flare:0.6.9` 或其他不低于 0.6.4 的已发布版本，并检查 `flare --version`；旧镜像不支持该开关。Docker 日志轮转配置可用于现有镜像。
 
 ## 访问日志模式
 
@@ -93,7 +93,7 @@ docker compose up -d --force-recreate flare
 
 日志驱动、轮转选项和 Compose 环境变量在创建容器时生效。仅运行 `docker compose restart flare` 不会应用这些 Compose 配置变更。
 
-Docker 日志轮转可直接用于现有镜像；访问日志开关需要 Flare 0.6.4 或更新版本。源码合并不代表镜像已经发布；使用固定版本时，先将 `image` 改为 `soulteary/flare:0.6.8` 或 `ghcr.io/soulteary/flare:0.6.8`，再拉取镜像。继续使用 `latest` 时，也应检查实际版本或 `flare --help` 是否包含 `--access_log`。
+Docker 日志轮转可直接用于现有镜像；访问日志开关需要 Flare 0.6.4 或更新版本。源码合并不代表镜像已经发布；使用固定版本时，先将 `image` 改为 `soulteary/flare:0.6.9` 或 `ghcr.io/soulteary/flare:0.6.9`，再拉取镜像。继续使用 `latest` 时，也应检查实际版本或 `flare --help` 是否包含 `--access_log`。
 
 选择已发布镜像后，更新镜像、重建并核对版本：
 

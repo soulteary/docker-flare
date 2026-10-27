@@ -1,0 +1,55 @@
+{
+  "results": [
+    {
+      "case": "root",
+      "status": "PASS",
+      "version": "0.6.9",
+      "anonymous_homepage": "public without initialization",
+      "authenticated_private_entry": false,
+      "session_and_identity_after_recreate": false,
+      "manual_initialization": false,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false,
+      "identity_after_recreate": true,
+      "anonymous_homepage_after_recreate": true
+    },
+    {
+      "case": "login",
+      "status": "PASS",
+      "version": "0.6.9",
+      "anonymous_homepage": "public with private entries hidden",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "manual_initialization": false,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false
+    },
+    {
+      "case": "private",
+      "status": "PASS",
+      "version": "0.6.9",
+      "anonymous_homepage": "requires login",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "manual_initialization": false,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false
+    },
+    {
+      "case": "traefik",
+      "status": "PASS",
+      "version": "0.6.9",
+      "anonymous_homepage": "requires login",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "manual_initialization": true,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": true
+    }
+  ],
+  "limits": "Native Linux ARM64 containers through Podman Docker API with isolated data; production local log config validated statically, temporary runtime override uses k8s-file; Traefik example backend origin/cookie only, no live Traefik routing or physical-device claim."
+}
