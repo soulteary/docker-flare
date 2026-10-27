@@ -1,18 +1,20 @@
 # Traefik 快速上手和使用，可参考 https://github.com/soulteary/traefik-example/
-version: '3.6'
-
 services:
   flare:
-    image: soulteary/flare:0.6.7
+    image: soulteary/flare:0.6.8
     restart: always
     logging:
       driver: local
       options:
         max-size: "10m"
         max-file: "3"
-    # 默认无需添加任何参数，如有特殊需求
-    # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
+    # 新实例先初始化管理员；替换下面的域名及路由 Host 后再启动。
     command: flare
+    environment:
+      FLARE_DISABLE_LOGIN: "false"
+      FLARE_VISIBILITY: "PRIVATE"
+      FLARE_COOKIE_SECURE: "true"
+      FLARE_EXTERNAL_URL: "https://flare.example.com"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik"

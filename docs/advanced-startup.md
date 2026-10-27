@@ -13,6 +13,11 @@
 修改程序监听端口          "FLARE_PORT"
 配置登陆模式下的账号      "FLARE_USER"
 配置登陆模式下的密码      "FLARE_PASS"
+从文件读取密码           "FLARE_PASS_FILE"
+持久安全状态目录         "FLARE_STATE_DIR"
+规范外部 origin          "FLARE_EXTERNAL_URL"
+允许的 Host 列表         "FLARE_ALLOWED_HOSTS"
+受信代理 IP/CIDR         "FLARE_TRUSTED_PROXIES"
 启用或禁用程序向导        "FLARE_GUIDE"
 启用程序废弃功能提示      "FLARE_DEPRECATED_NOTICE"
 启用服务端请求合并功能     "FLARE_MINI_REQUEST"
@@ -27,7 +32,7 @@ HTTP 访问日志模式         "FLARE_ACCESS_LOG"
 
 环境变量使用示例： `FLARE_OFFLINE=0` 或 `FLARE_OFFLINE=false`
 
-完整的环境变量列表，可以[参考 0.6.7 的配置定义](https://github.com/soulteary/flare/blob/0.6.7/config/model/cmd.go)。
+完整的环境变量列表，可以[参考 0.6.8 的配置定义](https://github.com/soulteary/flare/blob/0.6.8/config/model/cmd.go)。
 
 
 ## 命令行参数
@@ -35,13 +40,13 @@ HTTP 访问日志模式         "FLARE_ACCESS_LOG"
 使用镜像内的帮助命令查看当前版本支持的完整参数：
 
 ```bash
-docker run --rm soulteary/flare:0.6.7 flare --help
+docker run --rm soulteary/flare:0.6.8 flare --help
 ```
 
-例如，使用离线模式启动 0.6.7：
+例如，使用离线模式启动 0.6.8：
 
 ```bash
-docker run --rm -it -p 5005:5005 soulteary/flare:0.6.7 flare --offline=1
+docker run --rm -it -p 5005:5005 soulteary/flare:0.6.8 flare --offline=1
 ```
 
 ## 功能说明
@@ -61,9 +66,9 @@ docker run --rm -it -p 5005:5005 soulteary/flare:0.6.7 flare --offline=1
 
 当这个参数关闭之后，用户需要在登陆之后，才能够对设置页面的内容进行调整，适合 Flare 在公网环境中使用的小伙伴。
 
-此参数默认开启，方便在 HomeLab 或本地使用的小伙伴，减少不必要的操作。
+0.6.8 新实例默认关闭免登录，且全站私有；必须先初始化管理员，见[账号指南](application-account.md)。有效旧部署保留原访问模式。
 
-禁用方法，在 flare 启动参数后添加 `--disable_login=0`
+明确需要受信内网免登录时，同时设置 `FLARE_DISABLE_LOGIN=true`、`FLARE_VISIBILITY=DEFAULT`，且不得存在分类或条目的 `private: true`；该模式允许匿名管理内容。不要把它当成公网安全配置。
 
 ### HTTPS 反向代理的会话 Cookie：`cookie_secure`
 
@@ -94,7 +99,7 @@ environment:
 
 0.6.3 起，实时时钟、秒数显示和显示时区在 **设置 → 外观 → 模块设置** 中配置，或通过 `config.yml` 的 `Clock` 配置块调整。未配置时保持跟随服务器时区、包含秒数的静态显示。
 
-容器的 `TZ` 只决定进程本地时区。实时模式使用访问设备的系统时间，再按服务器、访问设备或指定时区换算，不会修改主机时间，也不提供校时。完整字段和示例见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.7/docs/clock.md)。
+容器的 `TZ` 只决定进程本地时区。实时模式使用访问设备的系统时间，再按服务器、访问设备或指定时区换算，不会修改主机时间，也不提供校时。完整字段和示例见[日期、时间与时区说明](https://github.com/soulteary/flare/blob/0.6.8/docs/clock.md)。
 
 ### 离线模式：`offline`
 
@@ -114,3 +119,7 @@ environment:
 首页需要登录时，必须同时设置 `FLARE_DISABLE_LOGIN=false` 与
 `FLARE_VISIBILITY=PRIVATE`。`0` 不是可见性的合法枚举，隐藏设置按钮也不是权限控制。
 环境变量、CLI、默认值、生效方式以及版本适用范围见[配置参考](configuration.md)。
+
+## 0.6.8 安全状态与凭据
+
+安全状态默认保存在 `/app/.flare-security/`，必须持久化。`FLARE_PASS_FILE` 与非空 `FLARE_PASS` 不能并用；密码文件要在容器内可读，最多 514 字节输入，只移除一次末尾换行。账号的本地／部署管理、来源切换与维护命令见[账号指南](application-account.md)。外部 origin 和受信代理的配置见[反向代理](reverse-proxy.md)。
