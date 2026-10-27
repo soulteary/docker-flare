@@ -27,7 +27,7 @@ docker compose up -d flare
 
 上面的隐藏输入命令用于 Bash；也可通过受保护的 Compose `.env` 或 Secret 提供值。示例用 `${FLARE_PASS:?...}` 阻止空密码启动。`FLARE_PASS` 是应用最终有效的启动输入，需检查工作目录 `.env` 的更高优先级；不要将真实密码提交 Git。
 
-凭据模式取决于已有状态和安装来源：新安装默认本地管理，迁移的旧凭据默认部署管理。需要持续由部署管理时，在首次初始化前显式设置 `FLARE_CREDENTIAL_MODE=deployment`；已初始化实例使用停机命令 `security set-credentials --mode deployment` 切换，不能只改环境变量。部署模式保留 Compose/.env/Secret 对凭据的管理。有效凭据变化并重建服务后会撤销旧会话；同值重启不反复改密。希望通过网页管理密码时，在账号页验证原密码并明确切为应用管理；切换后遗留的 `FLARE_PASS` 不会覆盖新密码。切回部署管理需停机使用 `security set-credentials --mode deployment`，详见[源码账号指南](https://github.com/soulteary/flare/blob/0.6.9/docs/accounts.md)。
+凭据模式取决于已有状态和安装来源：新安装默认本地管理，迁移的旧凭据默认部署管理。需要持续由部署管理时，在首次初始化前显式设置 `FLARE_CREDENTIAL_MODE=deployment`；已初始化实例使用停机命令 `security set-credentials --mode deployment` 切换，不能只改环境变量。部署模式保留 Compose/.env/Secret 对凭据的管理。有效凭据变化并重建服务后会撤销旧会话；同值重启不反复改密。希望通过网页管理密码时，在账号页验证原密码并明确切为应用管理；切换后遗留的 `FLARE_PASS` 不会覆盖新密码。切回部署管理需停机使用 `security set-credentials --mode deployment`，详见[源码账号指南](https://github.com/soulteary/flare/blob/0.6.10/docs/accounts.md)。
 
 ## 访问模式和隐私
 

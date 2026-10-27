@@ -1,6 +1,6 @@
 services:
   flare:
-    image: soulteary/flare:0.6.9
+    image: soulteary/flare:0.6.10
     restart: always
     logging:
       driver: local

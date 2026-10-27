@@ -1,6 +1,6 @@
 # 配置参考与版本边界
 
-稳定版为 **0.6.9**，包含持久化管理员账号、可撤销会话、分类／条目隐私保护和导航缓存。稳定部署请阅读对应
+稳定版为 **0.6.10**，包含持久化管理员账号、可撤销会话、分类／条目隐私保护和导航缓存。稳定部署请阅读对应
 版本文档，核对运行中的版本和镜像 digest；后续源码功能合并不代表新的镜像已经发布。
 
 配置优先级：命令行 > 应用工作目录 `.env` > 容器环境变量 > 默认值。Compose 项目
@@ -32,7 +32,7 @@
 
 布尔值建议写字符串 `"true"`/`"false"`。`FLARE_DEBUG=on` 在正式版也可开启应用 DEBUG 日志，但不会开启开发资源模式。
 启动参数修改后重启进程；外部直接修改 YAML 后也需重启，界面保存则用于后续请求。
-完整字段和版本行为见[0.6.9 配置参考](https://github.com/soulteary/flare/blob/0.6.9/docs/configuration.md)。
+完整字段和版本行为见[0.6.10 配置参考](https://github.com/soulteary/flare/blob/0.6.10/docs/configuration.md)。
 
 | 目标 | DISABLE_LOGIN | VISIBILITY |
 | --- | --- | --- |
@@ -50,13 +50,13 @@
 在「设置 → 外观」选择分类内部多列布局，对应 `Homepage.BookmarkLayout: sections`。
 默认值（空或 `groups`）仍按分类分列；`sections` 按分类纵向排列，并在每个分类内显示多列书签。
 列数根据可用宽度调整，手机单列／紧凑模式继续独立生效。
-完整设置见[布局说明](https://github.com/soulteary/flare/blob/0.6.9/docs/desktop-columns-and-scale.md)。
+完整设置见[布局说明](https://github.com/soulteary/flare/blob/0.6.10/docs/desktop-columns-and-scale.md)。
 
 ## 0.6.6 搜索与天气迁移
 
 搜索支持混合、本地优先和选择器模式，保留旧配置的本地搜索意图，不会自动启用外部引擎。
 `!keyword` 快捷语法已移除，旧 `EnableKeywords` 和引擎 `Keyword` 字段不再控制搜索；
-通过目标控件选择引擎。完整行为见[搜索说明](https://github.com/soulteary/flare/blob/0.6.9/docs/search-hybrid.md)。
+通过目标控件选择引擎。完整行为见[搜索说明](https://github.com/soulteary/flare/blob/0.6.10/docs/search-hybrid.md)。
 
 搜索设置实际变更时，先备份再原子替换配置，保留未知 YAML 字段。版本降级、并发修改或
 备份异常会阻止保存。升级或重启后请刷新已打开的设置页面，再提交修改。
@@ -64,4 +64,8 @@
 天气设置需搜索并选择具体省／市／区县，保存时重新校验候选。旧地区仅在唯一匹配时自动迁移；
 无法匹配或存在歧义时保留原配置，请手动选择。空地区不再自动按 IP 定位；设置中的定位按钮
 仅建议服务器出口 IP 对应的位置，受代理／VPN 影响，不代表访客位置，仍需确认并保存。
-详见[天气说明](https://github.com/soulteary/flare/blob/0.6.9/docs/weather.md)。
+详见[天气说明](https://github.com/soulteary/flare/blob/0.6.10/docs/weather.md)。
+
+## 0.6.10 外观与紧凑布局
+
+「设置 → 外观」新增隐藏版本信息选项。手机和平板紧凑模式使用 `Homepage.MobileBookmarkLayout: compact`，最多覆盖 1024 CSS 像素；默认布局继续可选，保存后的分类顺序、字体及列数选项保留。详见[本版布局说明](https://github.com/soulteary/flare/blob/0.6.10/docs/mobile-layout.md)。
