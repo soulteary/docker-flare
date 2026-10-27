@@ -1,25 +1,18 @@
 services:
   flare:
-    image: soulteary/flare:0.6.7
+    image: soulteary/flare:0.6.8
     restart: always
     logging:
       driver: local
       options:
         max-size: "10m"
         max-file: "3"
-    # 默认无需添加任何参数，如有特殊需求
-    # 可阅读文档 https://github.com/soulteary/docker-flare/blob/main/docs/advanced-startup.md
+    # 新实例先按 README 初始化管理员；默认全站私有。
+    # ./app:/app 同时持久化 YAML 和 .flare-security/，不要只挂载三个 YAML。
     command: flare
-    # 启用账号登陆模式
-    # command: flare --disable_login=false
-    # environment:
-      # 如需开启用户登陆模式，需要先设置 `disable_login` 启动参数为 `false`
-      # 如启用账号登录，未设置 FLARE_USER，则默认用户为 `flare`
-      # - FLARE_USER=flare
-      # 指定你自己的账号密码，如未设置 `FLARE_PASS`，则会默认生成密码并展示在应用启动日志中
-      # - FLARE_PASS=your_password
-      # 是否开启“使用向导”，访问 `/guide`
-      # - FLARE_GUIDE=1
+    environment:
+      FLARE_DISABLE_LOGIN: "false"
+      FLARE_VISIBILITY: "PRIVATE"
     ports:
       - 5005:5005
     volumes:

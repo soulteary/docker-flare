@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "case": "root",
+      "status": "PASS",
+      "version": "0.6.8",
+      "anonymous_homepage": "requires login",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false
+    },
+    {
+      "case": "login",
+      "status": "PASS",
+      "version": "0.6.8",
+      "anonymous_homepage": "public with private entries hidden",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false
+    },
+    {
+      "case": "private",
+      "status": "PASS",
+      "version": "0.6.8",
+      "anonymous_homepage": "requires login",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": false
+    },
+    {
+      "case": "traefik",
+      "status": "PASS",
+      "version": "0.6.8",
+      "anonymous_homepage": "requires login",
+      "authenticated_private_entry": true,
+      "session_and_identity_after_recreate": true,
+      "yaml_preserved": true,
+      "no_plaintext_password_in_state": true,
+      "secure_cookie": true
+    }
+  ],
+  "limits": "Native Linux ARM64 containers through Podman Docker API with isolated data; production local log config validated statically, temporary runtime override uses k8s-file; Traefik example backend origin/cookie only, no live Traefik routing or physical-device claim.",
+  "date": "2026-10-27",
+  "application_version": "0.6.8",
+  "application_commit": "36d909159d2422a46934f5bb1396f14bccaa4f17",
+  "image_index_digest": "sha256:4e01c92941b42cd28b8e5aa6b8db9f44af03a9ba03edee226a6fc6b05d80c24b",
+  "engine": "Podman 5.8.3 Docker API, native Linux ARM64",
+  "compose": "5.1.4",
+  "missing_deployment_password_rejected": [
+    "login",
+    "private"
+  ]
+}

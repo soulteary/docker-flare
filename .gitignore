@@ -1,1 +1,9 @@
 app/*.yml
+# Deployment credentials and persistent security state
+.env
+app/.flare-security/
+app/.flare-cookie-secret*
+app/.flare-editor-recovery/
+app/.flare-bookmark-backups/
+app/.flare-search-backups/
+example/*/app/
