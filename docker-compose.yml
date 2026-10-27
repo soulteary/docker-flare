@@ -1,18 +1,15 @@
 services:
   flare:
-    image: soulteary/flare:0.6.8
+    image: soulteary/flare:0.6.9
     restart: always
     logging:
       driver: local
       options:
         max-size: "10m"
         max-file: "3"
-    # 新实例先按 README 初始化管理员；默认全站私有。
+    # 默认免登录，启动即可浏览和修改；需要登录保护时使用 example/login 或 example/private。
     # ./app:/app 同时持久化 YAML 和 .flare-security/，不要只挂载三个 YAML。
     command: flare
-    environment:
-      FLARE_DISABLE_LOGIN: "false"
-      FLARE_VISIBILITY: "PRIVATE"
     ports:
       - 5005:5005
     volumes:
