@@ -32,4 +32,8 @@ Traefik 可参考[现有示例](../example/traefik/docker-compose.yml)，按实�
 
 Traefik 示例设置了 HTTPS origin 和 Secure Cookie，必须同步修改路由 Host 与外部 URL。HTTPS Cookie 不会在代理配置故障时自动降级；发生来源、CSRF 或认证错误时修正源配置，不要关闭保护。Traefik 示例显式配置全站私有，需先初始化管理员；0.6.9 默认示例免登录，不能据此假定反向代理后自动受保护；已有公开首页部署还需用匿名窗口检查 private 分类／条目不可见。
 
-完整字段与边界见[0.6.9 反向代理指南](https://github.com/soulteary/flare/blob/0.6.9/docs/reverse-proxy.md)。
+完整字段与边界见[0.6.10 反向代理指南](https://github.com/soulteary/flare/blob/0.6.10/docs/reverse-proxy.md)。
+
+## 0.6.10 设置保存修复
+
+设置页通过文档中的 same-origin Referrer 策略，抵御代理响应头覆盖为 no-referrer 导致的原生表单 Origin:null。该修复不解决 Host 被改写、外部协议或端口不一致；来源校验和 CSRF 保护继续生效。升级后刷新设置页面再提交，仍被拒绝时按上面的代理配置排查。
