@@ -1,0 +1,45 @@
+{
+  "compose": [
+    {
+      "file": "docker-compose.yml",
+      "parse": "PASS",
+      "image": "soulteary/flare:0.6.11",
+      "only_image_changed": true,
+      "data_mount_and_logging_preserved": true,
+      "missing_password_rejected": null
+    },
+    {
+      "file": "example/login/docker-compose.yml",
+      "parse": "PASS",
+      "image": "soulteary/flare:0.6.11",
+      "only_image_changed": true,
+      "data_mount_and_logging_preserved": true,
+      "missing_password_rejected": true
+    },
+    {
+      "file": "example/private/docker-compose.yml",
+      "parse": "PASS",
+      "image": "soulteary/flare:0.6.11",
+      "only_image_changed": true,
+      "data_mount_and_logging_preserved": true,
+      "missing_password_rejected": true
+    },
+    {
+      "file": "example/traefik/docker-compose.yml",
+      "parse": "PASS",
+      "image": "soulteary/flare:0.6.11",
+      "only_image_changed": true,
+      "data_mount_and_logging_preserved": true,
+      "missing_password_rejected": null
+    }
+  ],
+  "local_markdown_links_checked": 70,
+  "upstream_document_targets": "PASS",
+  "limits": "Static Compose and document validation only. No deployment-container or physical-device run performed for this synchronization.",
+  "application_version": "0.6.11",
+  "deployment_tag": "v0.6.11",
+  "application_commit": "85c705bb9271ed9907eeb5744fefacce1040157f",
+  "application_release": "https://github.com/soulteary/flare/releases/tag/0.6.11",
+  "release_workflow": "https://github.com/soulteary/flare/actions/runs/40624785544",
+  "image_index_digest": "sha256:6739e44562246af77f180fe4fe0fd86ab1d5eee7a2b1b4a4bb277c414664e2b7"
+}
