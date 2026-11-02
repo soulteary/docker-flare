@@ -9,6 +9,8 @@
 3. 执行 `docker compose pull flare` 和 `docker compose up -d --force-recreate flare`。仅 `restart` 不会替换镜像。
 4. 执行 `docker compose exec flare flare --version`，应显示 `0.6.13`；用匿名窗口核对原访问模式，检查登录、设置保存、编辑及重启后状态。
 
+随仓 `app/bookmarks.yml` 的占位链接原先引用不存在的分类 `b`，现改为已声明的 `string-name`。现有用户数据请自行修正实际无效引用，不要用仓库示例覆盖个人书签。
+
 这两版更新 fasthttp、minify 和 kit 依赖，无新增配置或数据迁移。根目录示例继续默认公开且免登录，可访问实例的人能浏览和编辑；登录、私有和 Traefik 示例继续保持原有保护。已有私有部署不得改用根目录配置覆盖 `FLARE_DISABLE_LOGIN=false`、`FLARE_VISIBILITY=PRIVATE`、凭据来源及 Cookie/反代设置。不要重新初始化或删除已有安全状态。
 
 ## 更早版本与回退
