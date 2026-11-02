@@ -23,7 +23,7 @@ links:
 
   - name: "链接3"
     link: "#"
-    category: b
+    category: "string-name"
   - name: "链接4"
     link: "#"
   - name: "链接5"
